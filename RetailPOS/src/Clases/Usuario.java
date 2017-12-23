@@ -11,4 +11,6 @@ package Clases;
  */
 public class Usuario {
     
+    public Usuario(){}
+    
 }
