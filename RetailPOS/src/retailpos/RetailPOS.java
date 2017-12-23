@@ -20,6 +20,7 @@ public class RetailPOS {
         System.out.println("HOLA2");
         System.out.println("HOLA3");
         System.out.println("HOLA4");
+        System.out.println("HOLA5");
     }
     
 }
