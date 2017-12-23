@@ -5,6 +5,8 @@
  */
 package retailpos;
 
+import Clases.Conexion;
+
 /**
  *
  * @author Peter
@@ -13,7 +15,7 @@ public class RetailPOS {
     
     public static void main(String[] args){
         System.out.println("HOLA01");
-        
+        Conexion.conectar();
     }
     
 }
