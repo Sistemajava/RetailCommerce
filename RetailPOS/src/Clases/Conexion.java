@@ -31,7 +31,8 @@ public class Conexion {
      *  Variables estaticas para poder utilizarlas como variables generales desde cualquier clase, frame.
      */
     public static Connection conn;
-
+    public static Statement sentencia;
+ 
 
     public static void conectar() {
         try {

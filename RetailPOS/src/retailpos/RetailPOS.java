@@ -1,23 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package retailpos;
 
 import Clases.Conexion;
+import clases.Usuario;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Peter
- */
 public class RetailPOS {
-    
-    public static void main(String[] args) throws SQLException{
 
-        Conexion.conectar();
+    public static void main(String[] args) throws SQLException {
+
+        Conexion.conectar();        
+        ResultSet listaU = Usuario.listarUsuarios("0002");
+        System.out.println("se llama metodo listar.");
+        while (listaU.next()) {
+            String id_usua = listaU.getString(1);
+            String usu_nombre = listaU.getString(2);
+            System.out.println("USUARIO ID :" + id_usua + "  ->   " + usu_nombre);
+        }
+
         Conexion.desconectar();
+
     }
-    
+
 }
