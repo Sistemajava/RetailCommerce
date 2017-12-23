@@ -17,6 +17,7 @@ public class RetailPOS {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("HOLA ES UNA PRUEBA");
+        System.out.println("HOLA ES UNA PRUEBA2");
     }
     
 }
