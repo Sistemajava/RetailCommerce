@@ -10,17 +10,10 @@ package retailpos;
  * @author Peter
  */
 public class RetailPOS {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-
-        System.out.println("HOLA0");
-        System.out.println("HOLA2");
-        System.out.println("HOLA3");
-        System.out.println("HOLA4");
-        System.out.println("HOLA5");
+    
+    public static void main(String[] args){
+        System.out.println("HOLA01");
+        
     }
     
 }
