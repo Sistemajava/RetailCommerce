@@ -6,6 +6,7 @@
 package retailpos;
 
 import Clases.Conexion;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,9 +14,10 @@ import Clases.Conexion;
  */
 public class RetailPOS {
     
-    public static void main(String[] args){
-        System.out.println("HOLA01");
+    public static void main(String[] args) throws SQLException{
+
         Conexion.conectar();
+        Conexion.desconectar();
     }
     
 }
