@@ -6,6 +6,7 @@
 package retailpos;
 
 import clases.Usuario;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,12 +15,13 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Peter
- * @see 
+ * @see
  */
 public class frmAcceso extends javax.swing.JFrame {
 
-    public frmAcceso() {
+    public frmAcceso() throws SQLException {
         initComponents();
+        this.cargaComboUserName();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,13 +29,13 @@ public class frmAcceso extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         BtnEntrar = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        cbUsername = new javax.swing.JComboBox<>();
 
         jLabel2.setText("jLabel2");
 
@@ -59,6 +61,12 @@ public class frmAcceso extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/retailpos/descarga.jpg"))); // NOI18N
 
+        cbUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUsernameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,9 +79,9 @@ public class frmAcceso extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                            .addComponent(cbUsername, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(BtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,8 +99,8 @@ public class frmAcceso extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(cbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,12 +120,12 @@ public class frmAcceso extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
-      
-        String username = this.txtUsuario.getText();
+
+        String username = (String) this.cbUsername.getSelectedItem();
         String paswname = this.txtPassword.getText();
-        
-        if (username.length() > 0 && username.length() < 5){
-           
+
+        if (username.length() > 0 && username.length() < 5) {
+
             Usuario usr = null;
             try {
                 usr = new Usuario(username);
@@ -125,24 +133,28 @@ public class frmAcceso extends javax.swing.JFrame {
                 Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
             }
             String passBaseDato = usr.getUsu_passw();
-            
-           if (paswname.length() > 0 && paswname.length() < 5){
-               System.out.println("PASS BASE DATO : "+passBaseDato + "\n PASS PANTALLA : "+paswname);
-              if (passBaseDato.equals(paswname) ){
-                  JOptionPane.showMessageDialog(this, "LOGIN CORRECTO CTM");
- 
-              }else{
-                  JOptionPane.showMessageDialog(this, "LA PASSW ES OTRA REINTENTE");
-              }
-           }else{
-               JOptionPane.showMessageDialog(this, "PassName invalido");
-           } 
-        }else{
+
+            if (paswname.length() > 0 && paswname.length() < 5) {
+                System.out.println("PASS BASE DATO : " + passBaseDato + "\n PASS PANTALLA : " + paswname);
+                if (passBaseDato.equals(paswname)) {
+                    JOptionPane.showMessageDialog(this, "LOGIN CORRECTO CTM");
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "LA PASSW ES OTRA REINTENTE");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "PassName invalido");
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "UserName invalido");
-        }        
-        
+        }
+
 
     }//GEN-LAST:event_BtnEntrarActionPerformed
+
+    private void cbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbUsernameActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -171,7 +183,11 @@ public class frmAcceso extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmAcceso().setVisible(true);
+                try {
+                    new frmAcceso().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -179,11 +195,19 @@ public class frmAcceso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEntrar;
     private javax.swing.JButton BtnSalir;
+    private javax.swing.JComboBox<String> cbUsername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void cargaComboUserName() throws SQLException {
+        ResultSet listaU = Usuario.listarUsuarios();
+        while (listaU.next()) {            
+            cbUsername.addItem(listaU.getString(1));
+        }
+        cbUsername.setSelectedIndex(-1);
+    }
 }
