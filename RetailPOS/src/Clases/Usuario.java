@@ -32,27 +32,21 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String usu_id_usua, int usu_id_perf, String usu_nombres, String usu_apelli1, String usu_apelli2, String usu_dni, String usu_passw, char usu_estado, String usu_fec_esta, String usu_ind_jefe, String usu_fec_alta, String usu_fec_lic_desde, String usu_fec_lic_hasta, char usu_conexion, String usu_fec_bloq, String usu_hor_bloq, String usu_tst_creacion, String usu_tst_modific, String usu_usr_creacion, String usu_usr_modific) {
-        this.usu_id_usua = usu_id_usua;
-        this.usu_id_perf = usu_id_perf;
-        this.usu_nombres = usu_nombres;
-        this.usu_apelli1 = usu_apelli1;
-        this.usu_apelli2 = usu_apelli2;
-        this.usu_dni = usu_dni;
-        this.usu_passw = usu_passw;
-        this.usu_estado = usu_estado;
-        this.usu_fec_esta = usu_fec_esta;
-        this.usu_ind_jefe = usu_ind_jefe;
-        this.usu_fec_alta = usu_fec_alta;
-        this.usu_fec_lic_desde = usu_fec_lic_desde;
-        this.usu_fec_lic_hasta = usu_fec_lic_hasta;
-        this.usu_conexion = usu_conexion;
-        this.usu_fec_bloq = usu_fec_bloq;
-        this.usu_hor_bloq = usu_hor_bloq;
-        this.usu_tst_creacion = usu_tst_creacion;
-        this.usu_tst_modific = usu_tst_modific;
-        this.usu_usr_creacion = usu_usr_creacion;
-        this.usu_usr_modific = usu_usr_modific;
+    public Usuario(String useName) throws SQLException {
+
+        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+                + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
+                + "usu_usr_creacion, usu_usr_modific"
+                + " from EMDTUSU where usu_id_usua = '" + useName + "';";
+
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            setUsu_passw((String) objRes.getObject(7));
+        }
+
     }
 
     //GET Y SET:

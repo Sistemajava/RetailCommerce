@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 public class RetailPOS {
 
     public static void main(String[] args) throws SQLException {
+        Conexion.conectar();
+        
+        
         
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame login = new frmAcceso();
@@ -17,7 +20,7 @@ public class RetailPOS {
         login.setVisible(true);
         
 
-        Conexion.conectar();
+        
         ResultSet listaU = Usuario.listarUsuarios("0002");
         System.out.println("se llama metodo listar.");
         while (listaU.next()) {
@@ -66,6 +69,6 @@ public class RetailPOS {
                     + "\nUSR creacion: " + usu_usr_creacion
                     + "\nUSR modificacion: " + usu_usr_modific);
         }
-        Conexion.desconectar();
+     //   Conexion.desconectar();
     }
 }
