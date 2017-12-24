@@ -4,10 +4,18 @@ import Clases.Conexion;
 import clases.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 
 public class RetailPOS {
 
     public static void main(String[] args) throws SQLException {
+        
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame login = new frmAcceso();
+        login.setLocationRelativeTo(null);
+        login.setResizable(false);
+        login.setVisible(true);
+        
 
         Conexion.conectar();
         ResultSet listaU = Usuario.listarUsuarios("0002");
