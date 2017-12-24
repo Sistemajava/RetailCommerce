@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 public class Usuario {
 
-    //ATRIBUTOS:
+    //ATRIBUTOS:    
+    
     private String usu_id_usua;
     private int usu_id_perf;
     private String usu_nombres;
@@ -45,9 +46,12 @@ public class Usuario {
 
         while (objRes.next()) {
             setUsu_passw((String) objRes.getObject(7));
+            //ingresar todos los campos
         }
 
     }
+    
+    //implementar metodo con ingreso de usuario y passw
 
     //GET Y SET:
     public String getUsu_id_usua() {
@@ -213,7 +217,7 @@ public class Usuario {
     public static ResultSet listarUsuarios() throws SQLException {
         ResultSet objRes = null;
 
-        String sql = "select usu_id_usua, usu_nombres from emdtusu;";
+        String sql = "select usu_id_usua, usu_nombres from EMDTUSU;";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
@@ -231,4 +235,6 @@ public class Usuario {
         return objRes;
     }
 
+    
+    
 }
