@@ -56,9 +56,7 @@ public class RetailPOS {
                     + "\nTST creacion: " + usu_tst_creacion
                     + "\nTST modificacion: " + usu_tst_modific
                     + "\nUSR creacion: " + usu_usr_creacion
-                    + "\nUSR modificacion: " + usu_usr_modific
-            );
-
+                    + "\nUSR modificacion: " + usu_usr_modific);
         }
         Conexion.desconectar();
     }
