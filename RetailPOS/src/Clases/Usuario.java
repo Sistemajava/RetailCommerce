@@ -228,8 +228,10 @@ public class Usuario {
     public static ResultSet listarUsuarios(String id_usua) throws SQLException {
         ResultSet objRes = null;
 
-        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, usu_usr_creacion, usu_usr_modific"
-                + "from emdtusu where usu_id_usua = '" + id_usua + "';";
+        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+                + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
+                + "usu_usr_creacion, usu_usr_modific"
+                + " from emdtusu where usu_id_usua = '" + id_usua + "';";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
