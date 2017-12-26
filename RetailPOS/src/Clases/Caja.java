@@ -7,6 +7,7 @@ public class Caja {
     private String pos_id_pos;
     private char pos_estado;
     private String pos_fec_esta;
+    private char pos_ind_res;
     private int pos_mvta_dia;
     private int pos_manu_dia;
     private String pos_tst_creacion;
@@ -18,11 +19,12 @@ public class Caja {
     public Caja() {
     }
 
-    public Caja(String pos_id_suc, String pos_id_pos, char pos_estado, String pos_fec_esta, int pos_mvta_dia, int pos_manu_dia, String pos_tst_creacion, String pos_tst_modific, String pos_usr_creacion, String pos_usr_modific) {
+    public Caja(String pos_id_suc, String pos_id_pos, char pos_estado, String pos_fec_esta, char pos_ind_res, int pos_mvta_dia, int pos_manu_dia, String pos_tst_creacion, String pos_tst_modific, String pos_usr_creacion, String pos_usr_modific) {
         this.pos_id_suc = pos_id_suc;
         this.pos_id_pos = pos_id_pos;
         this.pos_estado = pos_estado;
         this.pos_fec_esta = pos_fec_esta;
+        this.pos_ind_res = pos_ind_res;
         this.pos_mvta_dia = pos_mvta_dia;
         this.pos_manu_dia = pos_manu_dia;
         this.pos_tst_creacion = pos_tst_creacion;
@@ -62,6 +64,14 @@ public class Caja {
 
     public void setPos_fec_esta(String pos_fec_esta) {
         this.pos_fec_esta = pos_fec_esta;
+    }
+
+    public char getPos_ind_res() {
+        return pos_ind_res;
+    }
+
+    public void setPos_ind_res(char pos_ind_res) {
+        this.pos_ind_res = pos_ind_res;
     }
 
     public int getPos_mvta_dia() {
