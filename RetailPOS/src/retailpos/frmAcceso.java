@@ -124,7 +124,7 @@ public class frmAcceso extends javax.swing.JFrame {
         String username = (String) this.cbUsername.getSelectedItem();
         String paswname = this.txtPassword.getText();
 
-        if (username.length() > 0 && username.length() < 5) {
+        if (cbUsername.getSelectedObjects().toString() != "") {
 
             Usuario usr = null;
             try {

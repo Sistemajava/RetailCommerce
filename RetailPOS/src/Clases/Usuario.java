@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class Usuario {
 
     //ATRIBUTOS:    
-    
     private String usu_id_usua;
     private int usu_id_perf;
+    private String usu_id_sucu;
     private String usu_nombres;
     private String usu_apelli1;
     private String usu_apelli2;
@@ -35,7 +35,7 @@ public class Usuario {
 
     public Usuario(String useName) throws SQLException {
 
-        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+        String sql = "select usu_id_usua, usu_id_perf, usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
                 + "usu_usr_creacion, usu_usr_modific"
                 + " from EMDTUSU where usu_id_usua = '" + useName + "';";
@@ -50,9 +50,8 @@ public class Usuario {
         }
 
     }
-    
-    //implementar metodo con ingreso de usuario y passw
 
+    //implementar metodo con ingreso de usuario y passw
     //GET Y SET:
     public String getUsu_id_usua() {
         return usu_id_usua;
@@ -214,6 +213,15 @@ public class Usuario {
         this.usu_usr_modific = usu_usr_modific;
     }
 
+    public String getUsu_id_sucu() {
+        return usu_id_sucu;
+    }
+
+    public void setUsu_id_sucu(String usu_id_sucu) {
+        this.usu_id_sucu = usu_id_sucu;
+    }
+
+    //METODO LISTAR USUARIOS:
     public static ResultSet listarUsuarios() throws SQLException {
         ResultSet objRes = null;
 
@@ -235,6 +243,4 @@ public class Usuario {
         return objRes;
     }
 
-    
-    
 }
