@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -29,6 +30,19 @@ public class Region {
     public Region(String id_region) throws SQLException {
         String sql = "select reg_id_reg, reg_nombre, reg_correl, reg_num_reg, reg_zona"
                 + "from EMDTREG where reg_id_reg = '" + id_region + "';";
+
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setReg_id_reg((String) objRes.getObject(1));
+            setReg_nombre((String) objRes.getObject(2));
+            setReg_correl((int) objRes.getObject(3));
+            setReg_num_reg((String) objRes.getObject(4));
+            setReg_zona((String) objRes.getObject(5));
+        }
     }
 
     //GET Y SET:
@@ -72,4 +86,14 @@ public class Region {
         this.reg_zona = reg_zona;
     }
 
+    //METODO LISTAR:
+    public static ResultSet listarRegion(String id_region) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select reg_id_reg, reg_nombre, reg_correl, reg_num_reg, reg_zona"
+                + " from EMDTREG where reg_id_reg = '" + id_region + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
+    }
 }

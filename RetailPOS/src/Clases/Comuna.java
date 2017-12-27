@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -25,8 +26,20 @@ public class Comuna {
      * @throws SQLException
      */
     public Comuna(String id_comuna) throws SQLException {
-        String sql = "select com_id_com, com_id_reg, com_nombre"
+        String sql = "select com_id_com, "
+                + "com_id_reg, "
+                + "com_nombre"
                 + "from EMDTCOM where com_id_com = '" + id_comuna + "';";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setCom_id_com((String) objRes.getObject(1));
+            setCom_id_reg((int) objRes.getObject(2));
+            setCom_nombre((String) objRes.getObject(3));
+        }
     }
 
     //GET Y SET
@@ -54,4 +67,16 @@ public class Comuna {
         this.com_nombre = com_nombre;
     }
 
+    //METODO LISTAR:
+    public static ResultSet listarComuna(String id_comuna) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select com_id_com, "
+                + "com_id_reg, "
+                + "com_nombre"
+                + " from EMDTCOM where com_id_com = '" + id_comuna + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
+    }
 }

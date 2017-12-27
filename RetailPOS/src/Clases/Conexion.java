@@ -19,7 +19,6 @@ public class Conexion {
     /*
      * Varialbes para conexion Remota a otra BD desde la Internet.
      */
-
     public static String bd = "maty2907_BEMP001";
     public static String login = "maty2907_retail";
     public static String password = "comercio123.";
@@ -32,7 +31,6 @@ public class Conexion {
      */
     public static Connection conn;
     public static Statement sentencia;
- 
 
     public static void conectar() {
         try {
@@ -55,10 +53,9 @@ public class Conexion {
         }
     }
 
-
     public static void desconectar() throws SQLException {
         System.out.println("Desconectó de la BD");
         conn.close();
-    }    
+    }
 
 }

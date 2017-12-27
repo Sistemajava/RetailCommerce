@@ -1,5 +1,8 @@
 package Clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Sucursal {
 
     //ATRIBUTOS:
@@ -19,26 +22,52 @@ public class Sucursal {
     private String suc_usr_creacion;
     private String suc_usr_modific;
 
-    //CONSTRUCTORES:
-    public Sucursal() {
-    }
+    /**
+     * CONSTRUCTOR CON ACCESO A BASE DE DATOS:
+     *
+     * @param id_sucursal
+     * @throws SQLException
+     */
+    public Sucursal(String id_sucursal) throws SQLException {
+        String sql = "select suc_id_suc,"
+                + "suc_rut_suc,"
+                + "suc_nom_suc,"
+                + "suc_id_frm,"
+                + "suc_estado,"
+                + "suc_fec_esta,"
+                + "suc_id_region,"
+                + "suc_id_comuna,"
+                + "suc_nom_dir,"
+                + "suc_id_gVenta,"
+                + "suc_fec_alta,"
+                + "suc_tst_creacion,"
+                + "suc_tst_modificacion,"
+                + "suc_usr_creacion,"
+                + "suc_usr_modific"
+                + "from EMDTREG where reg_id_reg = '" + id_sucursal + "';";
 
-    public Sucursal(String suc_id_suc, String suc_rut_suc, String suc_nom_suc, String suc_id_frm, char suc_estado, String suc_fec_esta, int suc_id_region, int suc_id_comuna, String suc_nom_dir, String suc_id_gVenta, String suc_fec_alta, String suc_tst_creacion, String suc_tst_modificacion, String suc_usr_creacion, String suc_usr_modific) {
-        this.suc_id_suc = suc_id_suc;
-        this.suc_rut_suc = suc_rut_suc;
-        this.suc_nom_suc = suc_nom_suc;
-        this.suc_id_frm = suc_id_frm;
-        this.suc_estado = suc_estado;
-        this.suc_fec_esta = suc_fec_esta;
-        this.suc_id_region = suc_id_region;
-        this.suc_id_comuna = suc_id_comuna;
-        this.suc_nom_dir = suc_nom_dir;
-        this.suc_id_gVenta = suc_id_gVenta;
-        this.suc_fec_alta = suc_fec_alta;
-        this.suc_tst_creacion = suc_tst_creacion;
-        this.suc_tst_modificacion = suc_tst_modificacion;
-        this.suc_usr_creacion = suc_usr_creacion;
-        this.suc_usr_modific = suc_usr_modific;
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setSuc_id_suc((String) objRes.getObject(1));
+            setSuc_rut_suc((String) objRes.getObject(2));
+            setSuc_nom_suc((String) objRes.getObject(3));
+            setSuc_id_frm((String) objRes.getObject(4));
+            setSuc_estado((char) objRes.getObject(5));
+            setSuc_fec_esta((String) objRes.getObject(6));
+            setSuc_id_region((int) objRes.getObject(7));
+            setSuc_id_comuna((int) objRes.getObject(8));
+            setSuc_nom_dir((String) objRes.getObject(9));
+            setSuc_id_gVenta((String) objRes.getObject(10));
+            setSuc_fec_alta((String) objRes.getObject(11));
+            setSuc_tst_creacion((String) objRes.getObject(12));
+            setSuc_tst_modificacion((String) objRes.getObject(13));
+            setSuc_usr_creacion((String) objRes.getObject(14));
+            setSuc_usr_modific((String) objRes.getObject(15));
+        }
     }
 
     //GET Y SET:
@@ -162,9 +191,29 @@ public class Sucursal {
         this.suc_usr_creacion = suc_usr_creacion;
     }
 
-    @Override
-    public String toString() {
-        return "Sucursal{" + "suc_id_suc=" + suc_id_suc + ", suc_rut_suc=" + suc_rut_suc + ", suc_nom_suc=" + suc_nom_suc + ", suc_id_frm=" + suc_id_frm + ", suc_estado=" + suc_estado + ", suc_fec_esta=" + suc_fec_esta + ", suc_id_region=" + suc_id_region + ", suc_id_comuna=" + suc_id_comuna + ", suc_nom_dir=" + suc_nom_dir + ", suc_id_gVenta=" + suc_id_gVenta + ", suc_fec_alta=" + suc_fec_alta + ", suc_tst_creacion=" + suc_tst_creacion + ", suc_tst_modificacion=" + suc_tst_modificacion + ", suc_usr_creacion=" + suc_usr_creacion + ", suc_usr_modific=" + suc_usr_modific + '}';
+    //METODO LISTAR:
+    public static ResultSet listarSucursal(String id_sucursal) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select suc_id_suc,"
+                + "suc_rut_suc,"
+                + "suc_nom_suc,"
+                + "suc_id_frm,"
+                + "suc_estado,"
+                + "suc_fec_esta,"
+                + "suc_id_region,"
+                + "suc_id_comuna,"
+                + "suc_nom_dir,"
+                + "suc_id_gVenta,"
+                + "suc_fec_alta,"
+                + "suc_tst_creacion,"
+                + "suc_tst_modific,"
+                + "suc_usr_creacion,"
+                + "suc_usr_modific"
+                + " from EMDTSUC where suc_id_suc = '" + id_sucursal + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
     }
 
 }

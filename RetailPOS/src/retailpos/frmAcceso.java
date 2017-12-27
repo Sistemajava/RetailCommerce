@@ -119,6 +119,8 @@ public class frmAcceso extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_BtnSalirActionPerformed
 
+    
+    //BOTON ENTRAR:
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
 
         String username = (String) this.cbUsername.getSelectedItem();

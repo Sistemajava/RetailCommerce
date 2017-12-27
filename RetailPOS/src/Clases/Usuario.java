@@ -9,10 +9,9 @@ public class Usuario {
     //ATRIBUTOS:    
     private String usu_id_usua;
     private int usu_id_perf;
-    private String usu_id_sucu;
     private String usu_nombres;
-    private String usu_apelli1;
-    private String usu_apelli2;
+    private String usu_apell1;
+    private String usu_apell2;
     private String usu_dni;
     private String usu_passw;
     private char usu_estado;
@@ -35,9 +34,26 @@ public class Usuario {
 
     public Usuario(String useName) throws SQLException {
 
-        String sql = "select usu_id_usua, usu_id_perf, usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
-                + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
-                + "usu_usr_creacion, usu_usr_modific"
+        String sql = "select usu_id_usua,"
+                + " usu_id_perf,"
+                + " usu_nombres,"
+                + " usu_apell1,"
+                + " usu_apell2, "
+                + "usu_dni, "
+                + "usu_passw, "
+                + "usu_estado, "
+                + "usu_fec_esta,"
+                + " usu_ind_jefe, "
+                + "usu_fec_alta, "
+                + "usu_fec_lic_desde,"
+                + " usu_fec_lic_hasta, "
+                + "usu_conexion, "
+                + "usu_fec_bloq, "
+                + "usu_hor_bloq,"
+                + " usu_tst_creacion, "
+                + "usu_tst_modific, "
+                + "usu_usr_creacion,"
+                + " usu_usr_modific"
                 + " from EMDTUSU where usu_id_usua = '" + useName + "';";
 
         ResultSet objRes;
@@ -45,8 +61,28 @@ public class Usuario {
         objRes = Conexion.sentencia.executeQuery(sql);
 
         while (objRes.next()) {
+            //Atributos de la clase:
+            setUsu_id_usua((String) objRes.getObject(1));
+            setUsu_id_perf((int) objRes.getObject(2));
+            setUsu_nombres((String) objRes.getObject(3));
+            setUsu_apell1((String) objRes.getObject(4));
+            setUsu_apell2((String) objRes.getObject(5));
+            setUsu_dni((String) objRes.getObject(6));
             setUsu_passw((String) objRes.getObject(7));
-            //ingresar todos los campos
+            //setUsu_estado((char) objRes.getObject(8));
+            setUsu_estado(String.valueOf(objRes.getObject(8)).charAt(0));
+            setUsu_fec_esta(String.valueOf(objRes.getDate(9)));
+            setUsu_ind_jefe((String) objRes.getObject(10));
+            setUsu_fec_alta(String.valueOf(objRes.getObject(11)));
+            setUsu_fec_lic_desde(String.valueOf(objRes.getObject(12)));
+            setUsu_fec_lic_hasta(String.valueOf(objRes.getObject(13)));
+            setUsu_conexion(String.valueOf(objRes.getObject(14)).charAt(0));
+            setUsu_fec_bloq(String.valueOf(objRes.getObject(15)));
+            setUsu_hor_bloq(String.valueOf(objRes.getTime(16)));
+            setUsu_tst_creacion(String.valueOf(objRes.getTimestamp(17)));
+            setUsu_tst_modific(String.valueOf(objRes.getTimestamp(18)));
+            setUsu_usr_creacion((String) objRes.getObject(19));
+            setUsu_usr_modific((String) objRes.getObject(20));
         }
 
     }
@@ -77,20 +113,20 @@ public class Usuario {
         this.usu_nombres = usu_nombres;
     }
 
-    public String getUsu_apelli1() {
-        return usu_apelli1;
+    public String getUsu_apell1() {
+        return usu_apell1;
     }
 
-    public void setUsu_apelli1(String usu_apelli1) {
-        this.usu_apelli1 = usu_apelli1;
+    public void setUsu_apell1(String usu_apell1) {
+        this.usu_apell1 = usu_apell1;
     }
 
-    public String getUsu_apelli2() {
-        return usu_apelli2;
+    public String getUsu_apell2() {
+        return usu_apell2;
     }
 
-    public void setUsu_apelli2(String usu_apelli2) {
-        this.usu_apelli2 = usu_apelli2;
+    public void setUsu_apell2(String usu_apell2) {
+        this.usu_apell2 = usu_apell2;
     }
 
     public String getUsu_dni() {
@@ -213,14 +249,6 @@ public class Usuario {
         this.usu_usr_modific = usu_usr_modific;
     }
 
-    public String getUsu_id_sucu() {
-        return usu_id_sucu;
-    }
-
-    public void setUsu_id_sucu(String usu_id_sucu) {
-        this.usu_id_sucu = usu_id_sucu;
-    }
-
     //METODO LISTAR USUARIOS:
     public static ResultSet listarUsuarios() throws SQLException {
         ResultSet objRes = null;
@@ -231,8 +259,9 @@ public class Usuario {
         return objRes;
     }
 
+    //METODO LISTAR:
     public static ResultSet listarUsuarios(String id_usua) throws SQLException {
-        ResultSet objRes = null;
+        ResultSet objRes;
 
         String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
