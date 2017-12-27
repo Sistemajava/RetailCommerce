@@ -56,15 +56,15 @@ public class Sucursal {
             setSuc_rut_suc((String) objRes.getObject(2));
             setSuc_nom_suc((String) objRes.getObject(3));
             setSuc_id_frm((String) objRes.getObject(4));
-            setSuc_estado((char) objRes.getObject(5));
-            setSuc_fec_esta((String) objRes.getObject(6));
+            setSuc_estado(String.valueOf(objRes.getObject(5)).charAt(0));
+            setSuc_fec_esta(String.valueOf(objRes.getDate(6)));
             setSuc_id_region((int) objRes.getObject(7));
             setSuc_id_comuna((int) objRes.getObject(8));
             setSuc_nom_dir((String) objRes.getObject(9));
             setSuc_id_gVenta((String) objRes.getObject(10));
-            setSuc_fec_alta((String) objRes.getObject(11));
-            setSuc_tst_creacion((String) objRes.getObject(12));
-            setSuc_tst_modificacion((String) objRes.getObject(13));
+            setSuc_fec_alta(String.valueOf(objRes.getDate(11)));
+            setSuc_tst_creacion(String.valueOf(objRes.getTimestamp(12)));
+            setSuc_tst_modificacion(String.valueOf(objRes.getTimestamp(13)));
             setSuc_usr_creacion((String) objRes.getObject(14));
             setSuc_usr_modific((String) objRes.getObject(15));
         }
