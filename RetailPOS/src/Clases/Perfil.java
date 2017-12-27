@@ -56,14 +56,14 @@ public class Perfil {
             //Atributos de la clase:
             setPer_id_per((String) objRes.getObject(1));
             setPer_nombre_per((String) objRes.getObject(2));
-            setPer_estado((char) objRes.getObject(3));
-            setPer_fec_esta((String) objRes.getObject(4));
-            setPer_aut_info((char) objRes.getObject(5));
-            setPer_aut_vent((char) objRes.getObject(6));
-            setPer_aut_gest((char) objRes.getObject(7));
-            setPer_aut_cmpr((char) objRes.getObject(8));
-            setPer_tst_creacion((String) objRes.getObject(9));
-            setPer_tst_modific((String) objRes.getObject(10));
+            setPer_estado(String.valueOf(objRes.getObject(3)).charAt(0));
+            setPer_fec_esta(String.valueOf(objRes.getDate(4)));
+            setPer_aut_info(String.valueOf(objRes.getObject(5)).charAt(0));
+            setPer_aut_vent(String.valueOf(objRes.getObject(6)).charAt(0));
+            setPer_aut_gest(String.valueOf(objRes.getObject(7)).charAt(0));
+            setPer_aut_cmpr(String.valueOf(objRes.getObject(8)).charAt(0));
+            setPer_tst_creacion(String.valueOf(objRes.getTimestamp(9)));
+            setPer_tst_modific(String.valueOf(objRes.getTimestamp(10)));
             setPer_usr_creacion((String) objRes.getObject(11));
             setPer_usr_modific((String) objRes.getObject(12));
         }
