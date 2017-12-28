@@ -8,6 +8,8 @@ package retailpos;
 import clases.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,6 +20,9 @@ import javax.swing.JOptionPane;
  * @see
  */
 public class frmAcceso extends javax.swing.JFrame {
+
+    String fecha;
+    String horas;
 
     public frmAcceso() throws SQLException {
         initComponents();
@@ -119,39 +124,56 @@ public class frmAcceso extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_BtnSalirActionPerformed
 
-    
     //BOTON ENTRAR:
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
 
         String username = (String) this.cbUsername.getSelectedItem();
         String paswname = this.txtPassword.getText();
 
-        if (cbUsername.getSelectedObjects().toString() != "") {
+        if (this.cbUsername.getSelectedIndex() != -1) {
+            if (this.txtPassword.getText().length() > 0) {
 
-            Usuario usr = null;
-            try {
-                usr = new Usuario(username);
-            } catch (SQLException ex) {
-                Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String passBaseDato = usr.getUsu_passw();
+                boolean valida = false;
+                try {
+                    valida = Usuario.validaPassword(username, paswname);
+                    if (valida) {
+                        //en este punto ya validamos que el usuario y contraseña son los correctos, ahora necesitamos validar el estado de bloqueo. y el tiempo de desbloqueo.
 
-            if (paswname.length() > 0 && paswname.length() < 5) {
-                System.out.println("PASS BASE DATO : " + passBaseDato + "\n PASS PANTALLA : " + paswname);
-                if (passBaseDato.equals(paswname)) {
-                    JOptionPane.showMessageDialog(this, "LOGIN CORRECTO CTM");
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "LA PASSW ES OTRA REINTENTE");
+                        Usuario usuario = new Usuario(username);
+                        char tipoConexion = usuario.getUsu_conexion();
+                        if (tipoConexion != 'B') {
+                            if (tipoConexion != 'I'){
+                                frmSplash splash = new frmSplash();
+                                splash.setLocationRelativeTo(null);
+                                splash.setResizable(false);
+                                splash.setVisible(true);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(this, "Usuario Inactivo en el Sistema, contacte al Administrador del sistema", "Validar Credenciales", 2);
+                            }
+                        } else {
+                           //   String fecBloqueo = usuario.getUsu_fec_bloq();
+                           //   String horBloqueo = usuario.getUsu_hor_bloq();
+                           //   this.cargaFechaHora();
+                           
+                           // aca se debe validar la fecha hora de conexion para identificar si ha sido desbloqueado
+                           frmAvisoSesion aviso = new frmAvisoSesion();
+                           aviso.setLocationRelativeTo(null);
+                           aviso.setResizable(false);
+                           aviso.setVisible(true);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, reintente nuevamente", "Validar Credenciales", 2);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "PassName invalido");
+                JOptionPane.showMessageDialog(this, "Debe ingresar una contraseña para el Usuario " + username + " en el campo password", "Mensaje Alerta", 2);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "UserName invalido");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una cuenta de Usuario en el campo Usuario", "Mensaje Alerta", 2);
         }
-
-
     }//GEN-LAST:event_BtnEntrarActionPerformed
 
     private void cbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsernameActionPerformed
@@ -207,9 +229,32 @@ public class frmAcceso extends javax.swing.JFrame {
 
     private void cargaComboUserName() throws SQLException {
         ResultSet listaU = Usuario.listarUsuarios();
-        while (listaU.next()) {            
+        while (listaU.next()) {
             cbUsername.addItem(listaU.getString(1));
         }
         cbUsername.setSelectedIndex(-1);
     }
+
+    private void cargaFechaHora() {
+        String anio;
+        String mess;
+        String dias;
+        int hora;
+        int minu;
+        int segu;
+
+        Calendar calendario = new GregorianCalendar();
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minu = calendario.get(Calendar.MINUTE);
+        segu = calendario.get(Calendar.SECOND);
+
+        dias = Integer.toString(calendario.get(Calendar.DATE));
+        mess = Integer.toString(calendario.get(Calendar.MONTH));
+        anio = Integer.toString(calendario.get(Calendar.YEAR));
+        
+        fecha = anio+"-"+mess+"-"+dias;
+        horas = hora+":"+minu+":"+segu;
+        System.out.println("FECHA HORA DEL SISTEMA : " + fecha + " " +horas);
+    }
+    
 }
