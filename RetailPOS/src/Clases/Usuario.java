@@ -73,8 +73,7 @@ public class Usuario {
             setUsu_apell1((String) objRes.getObject(4));
             setUsu_apell2((String) objRes.getObject(5));
             setUsu_dni((String) objRes.getObject(6));
-            setUsu_passw((String) objRes.getObject(7));
-            //setUsu_estado((char) objRes.getObject(8));
+            setUsu_passw((String) objRes.getObject(7));            
             setUsu_estado(String.valueOf(objRes.getObject(8)).charAt(0));
             setUsu_fec_esta(String.valueOf(objRes.getDate(9)));
             setUsu_ind_jefe((String) objRes.getObject(10));
@@ -282,5 +281,27 @@ public class Usuario {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+    
+    public static boolean validaPassword(String id_usua, String passw) throws SQLException {
+        ResultSet objRes;
+        boolean resultado = false;
+
+        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+                + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
+                + "usu_usr_creacion, usu_usr_modific"
+                + " from EMDTUSU where usu_id_usua = '"+id_usua+"'  and usu_passw = '"+passw+"';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+       
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(id_usua)  &&  objRes.getString(7).equals(passw)){
+                resultado = true; 
+            }             
+        }       
+        return resultado;
+    }
+    
+      
+    
 
 }

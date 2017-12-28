@@ -176,8 +176,8 @@ public class Perfil {
     public static ResultSet listarPerfil(String id_perfil) throws SQLException {
         ResultSet objRes;
 
-        String sql = "select per_id_per, "
-                + "per_nombre_per, "
+        String sql = "select per_id_perf, "
+                + "per_nom_perf, "
                 + "per_estado,"
                 + "per_fec_esta,"
                 + "per_aut_info,"
@@ -188,7 +188,7 @@ public class Perfil {
                 + "per_tst_modific,"
                 + "per_usr_creacion,"
                 + "per_usr_modific"
-                + " from EMDTPER where per_id_per = '" + id_perfil + "';";
+                + " from EMDTPER where per_id_perf = " + id_perfil + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
