@@ -44,7 +44,7 @@ public class Sucursal {
                 + "suc_tst_modificacion,"
                 + "suc_usr_creacion,"
                 + "suc_usr_modific"
-                + "from EMDTREG where reg_id_reg = '" + id_sucursal + "';";
+                + "from EMDTSUC where reg_id_reg = '" + id_sucursal + "';";
 
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
@@ -191,7 +191,13 @@ public class Sucursal {
         this.suc_usr_creacion = suc_usr_creacion;
     }
 
-    //METODO LISTAR:
+    /**
+     * METODO LISTAR
+     *
+     * @param id_sucursal
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet listarSucursal(String id_sucursal) throws SQLException {
         ResultSet objRes;
 

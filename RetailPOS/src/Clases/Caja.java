@@ -1,5 +1,8 @@
 package Clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Caja {
 
     //ATRIBUTOS:
@@ -15,22 +18,45 @@ public class Caja {
     private String pos_usr_creacion;
     private String pos_usr_modific;
 
-    //CONSTRUCOTRES:
-    public Caja() {
-    }
+    /**
+     * CONSTRUCTOR CON ACCESO A BASE DE DATOS:
+     *
+     * @param cod_caja
+     * @throws SQLException
+     */
+    public Caja(String cod_caja) throws SQLException {
+        String sql = "select pos_id_suc, "
+                + "pos_id_pos,"
+                + "pos_estado,"
+                + "pos_fec_esta,"
+                + "pos_ind_res"
+                + "pos_mvta_dia,"
+                + "pos_manu_dia,"
+                + "pos_tst_creacion,"
+                + "pos_tst_modific,"
+                + "pos_usr_creacion,"
+                + "pos_usr_modific"
+                + "from EMDTPOS where pos_id_pos = '" + cod_caja + "';";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
 
-    public Caja(String pos_id_suc, String pos_id_pos, char pos_estado, String pos_fec_esta, char pos_ind_res, int pos_mvta_dia, int pos_manu_dia, String pos_tst_creacion, String pos_tst_modific, String pos_usr_creacion, String pos_usr_modific) {
-        this.pos_id_suc = pos_id_suc;
-        this.pos_id_pos = pos_id_pos;
-        this.pos_estado = pos_estado;
-        this.pos_fec_esta = pos_fec_esta;
-        this.pos_ind_res = pos_ind_res;
-        this.pos_mvta_dia = pos_mvta_dia;
-        this.pos_manu_dia = pos_manu_dia;
-        this.pos_tst_creacion = pos_tst_creacion;
-        this.pos_tst_modific = pos_tst_modific;
-        this.pos_usr_creacion = pos_usr_creacion;
-        this.pos_usr_modific = pos_usr_modific;
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setPos_id_suc((String) objRes.getObject(1));
+            setPos_id_pos((String) objRes.getObject(2));
+            //setPer_estado(String.valueOf(objRes.getObject(3)).charAt(0));
+            setPos_estado(String.valueOf(objRes.getObject(3)).charAt(0));
+            setPos_fec_esta(String.valueOf(objRes.getDate(4)));
+            setPos_ind_res(String.valueOf(objRes.getObject(5)).charAt(0));
+            setPos_mvta_dia((int) objRes.getObject(6));
+            setPos_manu_dia((int) objRes.getObject(7));
+            setPos_tst_creacion(String.valueOf(objRes.getTimestamp(4)));
+            setPos_tst_modific(String.valueOf(objRes.getTimestamp(5)));
+            setPos_usr_creacion((String) objRes.getObject(6));
+            setPos_usr_modific((String) objRes.getObject(7));
+        }
+
     }
 
     //GET Y SET:
@@ -122,9 +148,31 @@ public class Caja {
         this.pos_usr_modific = pos_usr_modific;
     }
 
-    @Override
-    public String toString() {
-        return "Caja{" + "pos_id_suc=" + pos_id_suc + ", pos_id_pos=" + pos_id_pos + ", pos_estado=" + pos_estado + ", pos_fec_esta=" + pos_fec_esta + ", pos_mvta_dia=" + pos_mvta_dia + ", pos_manu_dia=" + pos_manu_dia + ", pos_tst_creacion=" + pos_tst_creacion + ", pos_tst_modific=" + pos_tst_modific + ", pos_usr_creacion=" + pos_usr_creacion + ", pos_usr_modific=" + pos_usr_modific + '}';
+    /**
+     * METODO LISTAR
+     *
+     * @param cod_pos
+     * @return
+     * @throws SQLException
+     */
+    public static ResultSet listarCaja(String cod_pos) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select pos_id_suc, "
+                + "pos_id_pos,"
+                + "pos_estado,"
+                + "pos_fec_esta,"
+                + "pos_ind_res"
+                + "pos_mvta_dia,"
+                + "pos_manu_dia,"
+                + "pos_tst_creacion,"
+                + "pos_tst_modific,"
+                + "pos_usr_creacion,"
+                + "pos_usr_modific"
+                + " from EMDTPOS where pos_id_pos = '" + cod_pos + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
     }
 
 }

@@ -1,5 +1,8 @@
 package Clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Linea {
 
     //ATRIBUTOS:
@@ -13,20 +16,39 @@ public class Linea {
     private String lin_usr_creacion;
     private String lin_usr_modific;
 
-    //CONSTRUCTORE:
-    public Linea() {
-    }
+    /**
+     * Constructor clase con acceso a base de datos
+     *
+     * @param id_linea
+     * @throws SQLException
+     */
+    public Linea(String id_linea) throws SQLException {
+        String sql = "select lin_id_lin,"
+                + "lin_nom_linea,"
+                + "lin_id_area,"
+                + "lin_estado,"
+                + "fec_alta,"
+                + "lin_tst_creacion,"
+                + "lin_tst_modific,"
+                + "lin_usr_creacion,"
+                + "lin_usr_modific"
+                + "from EMDTLIN where lin_id_lin = '" + id_linea + "';";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
 
-    public Linea(String lin_id_lin, String lin_nom_linea, int lin_id_area, char lin_estado, String fec_alta, String lin_tst_creacion, String lin_tst_modific, String lin_usr_creacion, String lin_usr_modific) {
-        this.lin_id_lin = lin_id_lin;
-        this.lin_nom_linea = lin_nom_linea;
-        this.lin_id_area = lin_id_area;
-        this.lin_estado = lin_estado;
-        this.fec_alta = fec_alta;
-        this.lin_tst_creacion = lin_tst_creacion;
-        this.lin_tst_modific = lin_tst_modific;
-        this.lin_usr_creacion = lin_usr_creacion;
-        this.lin_usr_modific = lin_usr_modific;
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setLin_id_lin((String) objRes.getObject(1));
+            setLin_nom_linea((String) objRes.getObject(2));
+            setLin_id_area((int) objRes.getObject(3));
+            setLin_estado(String.valueOf(objRes.getObject(4)).charAt(0));
+            setFec_alta(String.valueOf(objRes.getDate(5)));
+            setLin_tst_creacion(String.valueOf(objRes.getTimestamp(6)));
+            setLin_tst_modific(String.valueOf(objRes.getTimestamp(7)));
+            setLin_usr_modific((String) objRes.getObject(8));
+            setLin_usr_modific((String) objRes.getObject(9));
+        }
     }
 
     //GET Y SET:
@@ -102,10 +124,28 @@ public class Linea {
         this.lin_usr_modific = lin_usr_modific;
     }
 
-    //TO STRING:
-    @Override
-    public String toString() {
-        return "Linea{" + "lin_id_lin=" + lin_id_lin + ", lin_nom_linea=" + lin_nom_linea + ", lin_id_area=" + lin_id_area + ", lin_estado=" + lin_estado + ", fec_alta=" + fec_alta + ", lin_tst_creacion=" + lin_tst_creacion + ", lin_tst_modific=" + lin_tst_modific + ", lin_usr_creacion=" + lin_usr_creacion + ", lin_usr_modific=" + lin_usr_modific + '}';
-    }
+    /**
+     * METODO LISTAR
+     *
+     * @param id_linea
+     * @return
+     * @throws SQLException
+     */
+    public static ResultSet listarLinea(String id_linea) throws SQLException {
+        ResultSet objRes;
 
+        String sql = "select lin_id_lin,"
+                + "lin_nom_linea,"
+                + "lin_id_area,"
+                + "lin_estado,"
+                + "fec_alta,"
+                + "lin_tst_creacion,"
+                + "lin_tst_modific,"
+                + "lin_usr_creacion,"
+                + "lin_usr_modific"
+                + " from EMDTLIN where lin_id_lin = '" + id_linea + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
+    }
 }

@@ -1,5 +1,8 @@
 package Clases;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Formato {
 
     //ATRIBUTOS:
@@ -17,24 +20,47 @@ public class Formato {
     private char frm_usr_creacion;
     private char frm_usr_modific;
 
-    //CONSTRUCTORES:
-    public Formato() {
-    }
+    /**
+     * Constructor clase con acceso a base de datos
+     *
+     * @param id_formato
+     * @throws SQLException
+     */
+    public Formato(String id_formato) throws SQLException {
+        String sql = "select frm_id_frm, "
+                + "frm_nom_form, "
+                + "frm_slogan,"
+                + "cant_caja,"
+                + "frm_estado,"
+                + "fec_estado,"
+                + "fec_alta,"
+                + "frm_hr_ini,"
+                + "frm_hr_fin,"
+                + "frm_tst_creacion,"
+                + "frm_tst_modific,"
+                + "frm_usr_creacion,"
+                + "frm_usr_modific"
+                + "from EMDTFRM where frm_id_frm = '" + id_formato + "';";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
 
-    public Formato(String frm_id_frm, String frm_nom_form, String frm_slogan, int cant_caja, char frm_estado, String fec_estado, String fec_alta, String frm_hr_ini, String frm_hr_fin, String frm_tst_creacion, String frm_tst_modific, char frm_usr_creacion, char frm_usr_modific) {
-        this.frm_id_frm = frm_id_frm;
-        this.frm_nom_form = frm_nom_form;
-        this.frm_slogan = frm_slogan;
-        this.cant_caja = cant_caja;
-        this.frm_estado = frm_estado;
-        this.fec_estado = fec_estado;
-        this.fec_alta = fec_alta;
-        this.frm_hr_ini = frm_hr_ini;
-        this.frm_hr_fin = frm_hr_fin;
-        this.frm_tst_creacion = frm_tst_creacion;
-        this.frm_tst_modific = frm_tst_modific;
-        this.frm_usr_creacion = frm_usr_creacion;
-        this.frm_usr_modific = frm_usr_modific;
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setFrm_id_frm((String) objRes.getObject(1));
+            setFrm_nom_form((String) objRes.getObject(2));
+            setFrm_slogan((String) objRes.getObject(3));
+            setCant_caja((int) objRes.getObject(4));
+            setFrm_estado(String.valueOf(objRes.getObject(5)).charAt(0));
+            setFec_estado(String.valueOf(objRes.getDate(6)));
+            setFec_alta(String.valueOf(objRes.getDate(7)));
+            setFrm_hr_ini(String.valueOf(objRes.getTime(8)));
+            setFrm_hr_fin(String.valueOf(objRes.getTime(9)));
+            setFrm_tst_creacion(String.valueOf(objRes.getTimestamp(10)));
+            setFrm_tst_modific(String.valueOf(objRes.getTimestamp(11)));
+            setFrm_usr_creacion(String.valueOf(objRes.getObject(12)).charAt(0));
+            setFrm_usr_modific(String.valueOf(objRes.getObject(13)).charAt(0));
+        }
     }
 
     //GET Y SET:
@@ -142,22 +168,32 @@ public class Formato {
         this.frm_usr_modific = frm_usr_modific;
     }
 
-    //METODO DE IMPRESION:
-    @Override
-    public String toString() {
-        return "Formato:"
-                + "frm_id_frm= " + frm_id_frm
-                + ", frm_nom_form= " + frm_nom_form
-                + ", frm_slogan= " + frm_slogan
-                + ", cant_caja= " + cant_caja
-                + ", frm_estado= " + frm_estado
-                + ", fec_estado= " + fec_estado
-                + ", fec_alta= " + fec_alta
-                + ", frm_hr_ini= " + frm_hr_ini
-                + ", frm_hr_fin= " + frm_hr_fin
-                + ", frm_tst_creacion= " + frm_tst_creacion
-                + ", frm_tst_modific= " + frm_tst_modific
-                + ", frm_usr_creacion= " + frm_usr_creacion
-                + ", frm_usr_modific= " + frm_usr_modific;
+    /**
+     * METODO LISTAR
+     *
+     * @param id_formato
+     * @return
+     * @throws SQLException
+     */
+    public static ResultSet listarFormato(String id_formato) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select frm_id_frm, "
+                + "frm_nom_form, "
+                + "frm_slogan,"
+                + "cant_caja,"
+                + "frm_estado,"
+                + "fec_estado,"
+                + "fec_alta,"
+                + "frm_hr_ini,"
+                + "frm_hr_fin,"
+                + "frm_tst_creacion,"
+                + "frm_tst_modific,"
+                + "frm_usr_creacion,"
+                + "frm_usr_modific"
+                + " from EMDTFRM where com_id_com = '" + id_formato + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
     }
 }

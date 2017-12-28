@@ -32,6 +32,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    /**
+     *
+     * @param useName
+     * @throws SQLException
+     */
     public Usuario(String useName) throws SQLException {
 
         String sql = "select usu_id_usua,"
@@ -259,7 +264,13 @@ public class Usuario {
         return objRes;
     }
 
-    //METODO LISTAR:
+    /**
+     * METODO LISTAR
+     *
+     * @param id_usua
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet listarUsuarios(String id_usua) throws SQLException {
         ResultSet objRes;
 

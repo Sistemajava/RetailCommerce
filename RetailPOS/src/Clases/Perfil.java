@@ -29,9 +29,9 @@ public class Perfil {
     private String per_usr_modific;
 
     /**
-     * Constructor clase comuna con acceso a base de datos
+     * Constructor clase con acceso a base de datos
      *
-     * @param id_comuna
+     * @param id_perfil
      * @throws SQLException
      */
     public Perfil(String id_perfil) throws SQLException {
@@ -47,7 +47,7 @@ public class Perfil {
                 + "per_tst_modific,"
                 + "per_usr_creacion,"
                 + "per_usr_modific"
-                + "from EMDTCOM where com_id_com = '" + id_perfil + "';";
+                + "from EMDTPER where com_id_com = '" + id_perfil + "';";
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
@@ -166,7 +166,13 @@ public class Perfil {
         this.per_usr_modific = per_usr_modific;
     }
 
-    //METODO LISTAR:
+    /**
+     * METODO LISTAR
+     *
+     * @param id_perfil
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet listarPerfil(String id_perfil) throws SQLException {
         ResultSet objRes;
 

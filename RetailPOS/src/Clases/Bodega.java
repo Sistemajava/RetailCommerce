@@ -1,5 +1,6 @@
 package Clases;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Bodega {
@@ -20,8 +21,29 @@ public class Bodega {
      * @throws SQLException
      */
     public Bodega(String cod_barra) throws SQLException {
-        String sql = "select bod_cod_barra, bod_cant_prod, bod_val_neto, bod_tst_creacion, bod_tst_modific, bod_usr_creacion, bod_usr_modific, "
+        String sql = "select bod_cod_barra, "
+                + "bod_cant_prod, "
+                + "bod_val_neto, "
+                + "bod_tst_creacion,"
+                + "bod_tst_modific, "
+                + "bod_usr_creacion, "
+                + "bod_usr_modific, "
                 + "from EMDTBOD where bod_cod_barra = '" + "cod_barra" + "';";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            //Atributos de la clase:
+            setBod_cod_barra((String) objRes.getObject(1));
+            setBod_cant_prod((int) objRes.getObject(2));
+            setBod_val_neto((int) objRes.getObject(3));
+            setBod_tst_creacion(String.valueOf(objRes.getTimestamp(4)));
+            setBod_tst_modific(String.valueOf(objRes.getTimestamp(5)));
+            setBod_usr_creacion((String) objRes.getObject(6));
+            setBod_usr_modific((String) objRes.getObject(7));
+        }
+
     }
 
     //GET Y SET:
@@ -81,9 +103,27 @@ public class Bodega {
         this.bod_usr_modific = bod_usr_modific;
     }
 
-    @Override
-    public String toString() {
-        return "Bodega{" + "bod_cod_barra=" + bod_cod_barra + ", bod_cant_prod=" + bod_cant_prod + ", bod_val_neto=" + bod_val_neto + ", bod_tst_creacion=" + bod_tst_creacion + ", bod_tst_modific=" + bod_tst_modific + ", bod_usr_creacion=" + bod_usr_creacion + ", bod_usr_modific=" + bod_usr_modific + '}';
+    /**
+     * METODO LISTAR
+     *
+     * @param cod_barra
+     * @return
+     * @throws SQLException
+     */
+    public static ResultSet listarBodega(String cod_barra) throws SQLException {
+        ResultSet objRes;
+
+        String sql = "select bod_cod_barra, "
+                + "bod_cant_prod, "
+                + "bod_val_neto, "
+                + "bod_tst_creacion,"
+                + "bod_tst_modific, "
+                + "bod_usr_creacion, "
+                + "bod_usr_modific, "
+                + " from EMDTBOD where bod_cod_barra = '" + cod_barra + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
     }
 
 }

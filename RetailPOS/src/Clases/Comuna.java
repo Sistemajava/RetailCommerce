@@ -20,7 +20,7 @@ public class Comuna {
     private String com_nombre;
 
     /**
-     * Constructor clase comuna con acceso a base de datos
+     * Constructor clase con acceso a base de datos
      *
      * @param id_comuna
      * @throws SQLException
@@ -67,7 +67,13 @@ public class Comuna {
         this.com_nombre = com_nombre;
     }
 
-    //METODO LISTAR:
+    /**
+     * METODO LISTAR
+     *
+     * @param id_comuna
+     * @return
+     * @throws SQLException
+     */
     public static ResultSet listarComuna(String id_comuna) throws SQLException {
         ResultSet objRes;
 
