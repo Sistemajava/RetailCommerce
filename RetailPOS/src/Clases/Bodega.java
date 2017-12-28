@@ -19,6 +19,7 @@ public class Bodega {
      *
      * @param cod_barra
      * @throws SQLException
+     * @Fecha 28-12-2017
      */
     public Bodega(String cod_barra) throws SQLException {
         String sql = "select bod_cod_barra, "
