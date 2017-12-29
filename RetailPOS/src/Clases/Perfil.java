@@ -193,4 +193,44 @@ public class Perfil {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+
+    /**
+     * METODO INGRESAR PERFIL
+     *
+     * @param id_perfil
+     * @return
+     * @throws SQLException
+     */
+    public static boolean agregarPerfil(String id_perfil) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTPER ("
+                    + "per_id_perf, "
+                    + "per_nom_perf, "
+                    + "per_estado,"
+                    + "per_fec_esta,"
+                    + "per_aut_info,per_aut_vent, per_aut_gest, per_aut_cmpr," //-> PERMISOS
+                    + "per_tst_creacion," + "per_tst_modific,"
+                    + "per_usr_creacion," + "per_usr_modific"
+                    
+                    + "VALUES ('" + id_perfil + ","
+                    + "'CAJERO',"
+                    + "'A',"
+                    + "CURRENT_DATE,"
+                    + "'0', '1', '0', '0'," //-> PERMISOS
+                    + "'08:00:00'," + "'23:00:00',"
+                    + "CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,"
+                    + "'0000','    ');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
 }
