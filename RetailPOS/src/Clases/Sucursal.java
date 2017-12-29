@@ -222,4 +222,56 @@ public class Sucursal {
         return objRes;
     }
 
+    /**
+     * METODO INGRESAR SUCURSAL
+     *
+     * @param id_sucursal
+     * @return
+     * @throws SQLException
+     */
+    public static boolean agregarSucursal(String id_sucursal) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTSUC ("
+                    + "suc_id_suc,"
+                    + "suc_rut_suc,"
+                    + "suc_nom_suc,"
+                    + "suc_id_frm,"
+                    + "suc_estado,"
+                    + "suc_fec_esta,"
+                    + "suc_id_region,"
+                    + "suc_id_comuna,"
+                    + "suc_nom_dir,"
+                    + "suc_id_gVenta,"
+                    + "suc_fec_alta,"
+                    + "suc_tst_creacion,"
+                    + "suc_tst_modific,"
+                    + "suc_usr_creacion,"
+                    + "suc_usr_modific"
+                    + "VALUES ('" + id_sucursal + ","
+                    + "'1111111111',"
+                    + "'SUPERMERCADO HIPER',"
+                    + "1000,"
+                    + "'A',"
+                    + "CURRENT_DATE,"
+                    + "'05',"
+                    + "'0005',"
+                    + "'Avenida Freire',"
+                    + "'0003',"
+                    + "CURRENT_DATE,"
+                    + "CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,"
+                    + "'0000','    ');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
+
 }
