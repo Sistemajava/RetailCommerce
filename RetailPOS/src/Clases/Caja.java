@@ -175,4 +175,48 @@ public class Caja {
         return objRes;
     }
 
+    /**
+     * METODO INGRESAR CAJA
+     *
+     * @param id_caja
+     * @return
+     * @throws SQLException
+     */
+    public static boolean agregarCaja(String id_caja) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTPOS ("
+                    + "pos_id_suc, "
+                    + "pos_id_pos,"
+                    + "pos_estado,"
+                    + "pos_fec_esta,"
+                    + "pos_ind_res"
+                    + "pos_mvta_dia,"
+                    + "pos_manu_dia,"
+                    + "pos_tst_creacion,"
+                    + "pos_tst_modific,"
+                    + "pos_usr_creacion,"
+                    + "pos_usr_modific"
+                    + "VALUES ('" + id_caja + ","
+                    + "'001',"
+                    + "'A',"
+                    + "CURRENT_DATE,"
+                    + "'C',"
+                    + "'170000',"
+                    + "'0',"
+                    + "CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,"
+                    + "'0000','    ');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
+
 }
