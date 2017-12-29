@@ -196,4 +196,46 @@ public class Formato {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+
+    /**
+     * METODO INGRESAR FORMATO
+     *
+     * @param id_formato
+     * @return
+     * @throws SQLException
+     */
+    public static boolean agregarFormato(String id_formato) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTFRM ("
+                    + "frm_id_frm, "
+                    + "frm_nom_form, "
+                    + "frm_slogan,"
+                    + "cant_caja,"
+                    + "frm_estado," + "fec_estado," + "fec_alta,"
+                    + "frm_hr_ini," + "frm_hr_fin,"
+                    + "frm_tst_creacion," + "frm_tst_modific,"
+                    + "frm_usr_creacion,"
+                    + "frm_usr_modific"
+                    + "VALUES ('" + id_formato + ","
+                    + "'HIPER',"
+                    + "'COMPRE MAS, GASTE MAS',"
+                    + "'100',"
+                    + "'A',"
+                    + "CURRENT_DATE," + "CURRENT_DATE," + "CURRENT_DATE,"
+                    + "'08:00:00'," + "'23:00:00',"
+                    + "CURRENT_TIMESTAMP, CURRENT_TIMESTAMP,"
+                    + "'0000','    ');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
 }
