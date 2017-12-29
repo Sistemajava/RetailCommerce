@@ -73,7 +73,7 @@ public class Usuario {
             setUsu_apell1((String) objRes.getObject(4));
             setUsu_apell2((String) objRes.getObject(5));
             setUsu_dni((String) objRes.getObject(6));
-            setUsu_passw((String) objRes.getObject(7));            
+            setUsu_passw((String) objRes.getObject(7));
             setUsu_estado(String.valueOf(objRes.getObject(8)).charAt(0));
             setUsu_fec_esta(String.valueOf(objRes.getDate(9)));
             setUsu_ind_jefe((String) objRes.getObject(10));
@@ -281,7 +281,14 @@ public class Usuario {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
-    
+
+    /**
+     * "METODO VALIDAR PASSWORD"
+     * @param id_usua
+     * @param passw
+     * @return
+     * @throws SQLException 
+     */
     public static boolean validaPassword(String id_usua, String passw) throws SQLException {
         ResultSet objRes;
         boolean resultado = false;
@@ -289,19 +296,47 @@ public class Usuario {
         String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
                 + "usu_usr_creacion, usu_usr_modific"
-                + " from EMDTUSU where usu_id_usua = '"+id_usua+"'  and usu_passw = '"+passw+"';";
+                + " from EMDTUSU where usu_id_usua = '" + id_usua + "'  and usu_passw = '" + passw + "';";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
-       
+
         while (objRes.next()) {
-            if (objRes.getString(1).equals(id_usua)  &&  objRes.getString(7).equals(passw)){
-                resultado = true; 
-            }             
-        }       
+            if (objRes.getString(1).equals(id_usua) && objRes.getString(7).equals(passw)) {
+                resultado = true;
+            }
+        }
         return resultado;
     }
-    
-      
-    
+
+    /**
+     * Metodo de ingreso de usuario
+     *
+     * @param idUsu = char 4
+     * @param idPerf = int 2
+     * @return
+     * @throws SQLException
+     */
+    public static boolean agregarUsuario(String idUsu, int idPerf) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            //insert into EMDTUSU (usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe,usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific,usu_usr_creacion, usu_usr_modific) VALUES ('0009',1,"Nuevo Usuario","apelli1","apelli2","0000000000","0009",'A',CURRENT_DATE, 'N',CURRENT_DATE,'0001-01-01','0001-01-01','N','0001-01-01','01:00:00', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'0000','    ');
+            String sql = "insert into EMDTUSU (usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, "
+                    + "usu_fec_esta, usu_ind_jefe,usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, "
+                    + "usu_tst_modific,usu_usr_creacion, usu_usr_modific) "
+                    + "VALUES ('" + idUsu + "'," + idPerf + ",'Nuevo Usuario','apelli1','apelli2','0000000000','0009','A',CURRENT_DATE,'N',CURRENT_DATE,'0001-01-01','0001-01-01',"
+                    + "'N','0001-01-01','01:00:00', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'0000','    ');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
 
 }
