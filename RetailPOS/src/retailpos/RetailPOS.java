@@ -16,6 +16,8 @@ public class RetailPOS {
     public static void main(String[] args) throws SQLException {
         Conexion.conectar();
 
+        boolean valida = Usuario.agregarUsuario("0013",3);
+        
             JFrame.setDefaultLookAndFeelDecorated(true);
             JFrame login = new frmAcceso();
             login.setLocationRelativeTo(null);

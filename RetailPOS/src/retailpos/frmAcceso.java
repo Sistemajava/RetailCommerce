@@ -163,6 +163,7 @@ public class frmAcceso extends javax.swing.JFrame {
                            aviso.setVisible(true);
                         }
                     } else {
+                        //aca hacer logica para controlar cuando se equivoca por tercera vez en el login, debe bloquear la cuenta.
                         JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, reintente nuevamente", "Validar Credenciales", 2);
                     }
                 } catch (SQLException ex) {
