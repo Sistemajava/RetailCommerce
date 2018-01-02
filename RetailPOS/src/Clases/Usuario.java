@@ -253,7 +253,7 @@ public class Usuario {
         this.usu_usr_modific = usu_usr_modific;
     }
 
-    //METODO LISTAR USUARIOS:
+    //METODO LISTAR todos los USUARIOS:
     public static ResultSet listarUsuarios() throws SQLException {
         ResultSet objRes = null;
 
@@ -264,7 +264,7 @@ public class Usuario {
     }
 
     /**
-     * METODO LISTAR
+     * METODO LISTAR usuario especifico
      *
      * @param id_usua
      * @return
