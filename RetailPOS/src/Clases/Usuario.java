@@ -9,6 +9,7 @@ public class Usuario {
     //ATRIBUTOS:    
     private String usu_id_usua;
     private int usu_id_perf;
+    private String usu_id_sucu; // añadido el 02-01-2018
     private String usu_nombres;
     private String usu_apell1;
     private String usu_apell2;
@@ -40,18 +41,19 @@ public class Usuario {
     public Usuario(String useName) throws SQLException {
 
         String sql = "select usu_id_usua,"
-                + " usu_id_perf,"
-                + " usu_nombres,"
-                + " usu_apell1,"
-                + " usu_apell2, "
+                + "usu_id_perf,"
+                + "usu_id_sucu,"
+                + "usu_nombres,"
+                + "usu_apell1,"
+                + "usu_apell2, "
                 + "usu_dni, "
                 + "usu_passw, "
                 + "usu_estado, "
                 + "usu_fec_esta,"
-                + " usu_ind_jefe, "
+                + "usu_ind_jefe, "
                 + "usu_fec_alta, "
                 + "usu_fec_lic_desde,"
-                + " usu_fec_lic_hasta, "
+                + "usu_fec_lic_hasta, "
                 + "usu_conexion, "
                 + "usu_fec_bloq, "
                 + "usu_hor_bloq,"
@@ -69,24 +71,25 @@ public class Usuario {
             //Atributos de la clase:
             setUsu_id_usua((String) objRes.getObject(1));
             setUsu_id_perf((int) objRes.getObject(2));
-            setUsu_nombres((String) objRes.getObject(3));
-            setUsu_apell1((String) objRes.getObject(4));
-            setUsu_apell2((String) objRes.getObject(5));
-            setUsu_dni((String) objRes.getObject(6));
-            setUsu_passw((String) objRes.getObject(7));
-            setUsu_estado(String.valueOf(objRes.getObject(8)).charAt(0));
-            setUsu_fec_esta(String.valueOf(objRes.getDate(9)));
-            setUsu_ind_jefe((String) objRes.getObject(10));
-            setUsu_fec_alta(String.valueOf(objRes.getObject(11)));
-            setUsu_fec_lic_desde(String.valueOf(objRes.getObject(12)));
-            setUsu_fec_lic_hasta(String.valueOf(objRes.getObject(13)));
-            setUsu_conexion(String.valueOf(objRes.getObject(14)).charAt(0));
-            setUsu_fec_bloq(String.valueOf(objRes.getObject(15)));
-            setUsu_hor_bloq(String.valueOf(objRes.getTime(16)));
-            setUsu_tst_creacion(String.valueOf(objRes.getTimestamp(17)));
-            setUsu_tst_modific(String.valueOf(objRes.getTimestamp(18)));
-            setUsu_usr_creacion((String) objRes.getObject(19));
-            setUsu_usr_modific((String) objRes.getObject(20));
+            setUsu_id_sucu((String) objRes.getObject(3));
+            setUsu_nombres((String) objRes.getObject(4));
+            setUsu_apell1((String) objRes.getObject(5));
+            setUsu_apell2((String) objRes.getObject(6));
+            setUsu_dni((String) objRes.getObject(7));
+            setUsu_passw((String) objRes.getObject(8));
+            setUsu_estado(String.valueOf(objRes.getObject(9)).charAt(0));
+            setUsu_fec_esta(String.valueOf(objRes.getDate(10)));
+            setUsu_ind_jefe((String) objRes.getObject(11));
+            setUsu_fec_alta(String.valueOf(objRes.getObject(12)));
+            setUsu_fec_lic_desde(String.valueOf(objRes.getObject(13)));
+            setUsu_fec_lic_hasta(String.valueOf(objRes.getObject(14)));
+            setUsu_conexion(String.valueOf(objRes.getObject(15)).charAt(0));
+            setUsu_fec_bloq(String.valueOf(objRes.getObject(16)));
+            setUsu_hor_bloq(String.valueOf(objRes.getTime(17)));
+            setUsu_tst_creacion(String.valueOf(objRes.getTimestamp(18)));
+            setUsu_tst_modific(String.valueOf(objRes.getTimestamp(19)));
+            setUsu_usr_creacion((String) objRes.getObject(20));
+            setUsu_usr_modific((String) objRes.getObject(21));
         }
 
     }
@@ -107,6 +110,14 @@ public class Usuario {
 
     public void setUsu_id_perf(int usu_id_perf) {
         this.usu_id_perf = usu_id_perf;
+    }
+
+    public String getUsu_id_sucu() {
+        return usu_id_sucu;
+    }
+
+    public void setUsu_id_sucu(String usu_id_sucu) {
+        this.usu_id_sucu = usu_id_sucu;
     }
 
     public String getUsu_nombres() {
@@ -264,7 +275,7 @@ public class Usuario {
     }
 
     /**
-     * METODO LISTAR usuario especifico
+     * 02-01-2018 METODO LISTAR usuario especifico
      *
      * @param id_usua
      * @return
@@ -273,7 +284,7 @@ public class Usuario {
     public static ResultSet listarUsuarios(String id_usua) throws SQLException {
         ResultSet objRes;
 
-        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+        String sql = "select usu_id_usua, usu_id_perf, , usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
                 + "usu_usr_creacion, usu_usr_modific"
                 + " from EMDTUSU where usu_id_usua = '" + id_usua + "';";
@@ -284,16 +295,17 @@ public class Usuario {
 
     /**
      * "METODO VALIDAR PASSWORD"
+     *
      * @param id_usua
      * @param passw
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static boolean validaPassword(String id_usua, String passw) throws SQLException {
         ResultSet objRes;
         boolean resultado = false;
 
-        String sql = "select usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+        String sql = "select usu_id_usua, usu_id_perf, , usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
                 + "usu_usr_creacion, usu_usr_modific"
                 + " from EMDTUSU where usu_id_usua = '" + id_usua + "'  and usu_passw = '" + passw + "';";
@@ -313,18 +325,20 @@ public class Usuario {
      *
      * @param idUsu = char 4
      * @param idPerf = int 2
+     * @param idSucu
      * @return
      * @throws SQLException
      */
-    public static boolean agregarUsuario(String idUsu, int idPerf) throws SQLException {
+    public static boolean agregarUsuario(String idUsu, int idPerf, String idSucu) throws SQLException {
         boolean resultado = false;
 
         try {
             //insert into EMDTUSU (usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe,usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific,usu_usr_creacion, usu_usr_modific) VALUES ('0009',1,"Nuevo Usuario","apelli1","apelli2","0000000000","0009",'A',CURRENT_DATE, 'N',CURRENT_DATE,'0001-01-01','0001-01-01','N','0001-01-01','01:00:00', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'0000','    ');
-            String sql = "insert into EMDTUSU (usu_id_usua, usu_id_perf, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, "
+            String sql = "insert into EMDTUSU ("
+                    + "usu_id_usua, usu_id_perf, usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, "
                     + "usu_fec_esta, usu_ind_jefe,usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, "
                     + "usu_tst_modific,usu_usr_creacion, usu_usr_modific) "
-                    + "VALUES ('" + idUsu + "'," + idPerf + ",'Nuevo Usuario','apelli1','apelli2','0000000000','0009','A',CURRENT_DATE,'N',CURRENT_DATE,'0001-01-01','0001-01-01',"
+                    + "VALUES ('" + idUsu + "'," + idPerf + idSucu + ",'Nuevo Usuario','apelli1','apelli2','0000000000','0009','A',CURRENT_DATE,'N',CURRENT_DATE,'0001-01-01','0001-01-01',"
                     + "'N','0001-01-01','01:00:00', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'0000','    ');";
 
             Conexion.sentencia = Conexion.conn.prepareStatement(sql);
