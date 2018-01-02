@@ -214,7 +214,8 @@ public class Perfil {
                     + "per_tst_creacion," + "per_tst_modific,"
                     + "per_usr_creacion," + "per_usr_modific"
                     
-                    + "VALUES ('" + id_perfil + ","
+                    + "VALUES ('" 
+                    + id_perfil + ","
                     + "'CAJERO',"
                     + "'A',"
                     + "CURRENT_DATE,"
