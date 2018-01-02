@@ -207,7 +207,7 @@ public class Producto {
     /**
      * METODO LISTAR
      *
-     * @param id_usua
+     * @param id_producto
      * @return
      * @throws SQLException
      */
@@ -247,7 +247,8 @@ public class Producto {
         boolean resultado = false;
 
         try {
-            String sql = "insert into EMDTPRO (pro_id_pro,"
+            String sql = "insert into EMDTPRO ("
+                    + "pro_id_pro,"
                     + "pro_cod_barra," + "pro_nombre,"
                     + "pro_marca," + "pro_id_rub," + "pro_id_linea," + "pro_area,"
                     + "pro_estado," + "pro_val_net,"
