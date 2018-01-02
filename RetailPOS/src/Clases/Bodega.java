@@ -126,5 +126,4 @@ public class Bodega {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
-
 }
