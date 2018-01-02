@@ -85,4 +85,30 @@ public class Comuna {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+
+    /**
+     * 02-01-2018 METODO INGRESAR COMUNA
+     *
+     * @param id_comuna
+     * @param id_region
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean agregarComuna(String id_comuna, String id_region) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTCOM ("
+                    + "com_id_com,"
+                    + "com_id_reg,"
+                    + "com_nombre)"
+                    + "VALUES ('" + id_comuna + "'," + id_region + ", 'Quilpue');";
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+            resultado = true;
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
 }
