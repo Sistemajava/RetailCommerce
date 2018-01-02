@@ -148,4 +148,44 @@ public class Linea {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+
+    /**
+     * 02-01-2017 METODO INGRESAR LINEA
+     *
+     * @param idLinea
+     * @param idArea
+     * @return
+     */
+    public static boolean ingresarLinea(String idLinea, String idArea) {
+        boolean resultado = false;
+
+        try {
+            String sql = "insert into EMDTLIN ("
+                    + "lin_id_lin,"
+                    + "lin_nom_linea,"
+                    + "lin_id_area,"
+                    + "lin_estado,"
+                    + "fec_alta,"
+                    + "lin_tst_creacion,"
+                    + "lin_tst_modific,"
+                    + "lin_usr_creacion,"
+                    + "lin_usr_modific"
+                    + "VALUES ('"
+                    + idLinea + ","
+                    + "'COMPUTACION',"
+                    + idArea + ","
+                    + "'A',"
+                    + "CURRENT_DATE,"
+                    + "CURRENT_TIMESTAMP,"
+                    + "CURRENT_TIMESTAMP,"
+                    + "'0000',"
+                    + "'    ');";
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+            resultado = true;
+        } catch (Exception e) {
+            resultado = false;
+        }
+        return resultado;
+    }
 }
