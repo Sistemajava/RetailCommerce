@@ -90,10 +90,47 @@ public class Region {
     public static ResultSet listarRegion(String id_region) throws SQLException {
         ResultSet objRes;
 
-        String sql = "select reg_id_reg, reg_nombre, reg_correl, reg_num_reg, reg_zona"
+        String sql = "select "
+                + "reg_id_reg, "
+                + "reg_nombre, "
+                + "reg_correl, "
+                + "reg_num_reg, "
+                + "reg_zona"
                 + " from EMDTREG where reg_id_reg = '" + id_region + "';";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
+    }
+
+    /**
+     * 02-01-2018 METODO INGRESAR REGION
+     *
+     * @param idRegion
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean ingresarRegion(String idRegion) throws SQLException {
+        boolean resultado = false;
+        try {
+            String sql = "insert into EMDTREG ("
+                    + "reg_id_reg, "
+                    + "reg_nombre, "
+                    + "reg_correl, "
+                    + "reg_num_reg, "
+                    + "reg_zona"
+                    + "VALUES ('"
+                    + idRegion
+                    + "'Valparaiso',"
+                    + "'05',"
+                    + "'V',"
+                    + "'CENTRO');";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+            resultado = true;
+        } catch (SQLException e) {
+            resultado = false;
+        }
+        return resultado;
     }
 }
