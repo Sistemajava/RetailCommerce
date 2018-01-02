@@ -68,6 +68,20 @@ public class Comuna {
     }
 
     /**
+     * 02-01-2017 METODO LISTAR COMUNA PARA COMBO BOX EN FRMELIMINARCOMUNA
+     *
+     * @return
+     */
+    public static ResultSet listarComuna() throws SQLException {
+        ResultSet objRes = null;
+        String sql = "select com_id_com, com_id_reg, com_nombre"
+                + "from EMDTCOM;";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        return objRes;
+    }
+
+    /**
      * METODO LISTAR
      *
      * @param id_comuna
@@ -108,6 +122,29 @@ public class Comuna {
             resultado = true;
         } catch (Exception e) {
             resultado = false;
+        }
+        return resultado;
+    }
+
+    /**
+     * 02-01-2018 METODO ELIMINAR COMUNA
+     *
+     * @param idComuna
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean eliminarComuna(String idComuna) throws SQLException {
+        ResultSet objRes;
+        boolean resultado = false;
+        String sql = "delete com_id_com,com_id_reg,com_nombre,"
+                + "from EMDTCOM where com_id_com = idComuna";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idComuna)) {
+                resultado = true;
+            }
         }
         return resultado;
     }
