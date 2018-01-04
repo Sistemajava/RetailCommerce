@@ -5,7 +5,9 @@
  */
 package retailpos;
 
+import Clases.Conexion;
 import clases.Usuario;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -20,7 +22,7 @@ import javax.swing.JOptionPane;
  * @see
  */
 public class frmAcceso extends javax.swing.JFrame {
-
+    private static int contador = 1;
     String fecha;
     String horas;
 
@@ -126,7 +128,7 @@ public class frmAcceso extends javax.swing.JFrame {
 
     //BOTON ENTRAR:
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
-
+        
         String username = (String) this.cbUsername.getSelectedItem();
         String paswname = this.txtPassword.getText();
 
@@ -141,6 +143,8 @@ public class frmAcceso extends javax.swing.JFrame {
 
                         Usuario usuario = new Usuario(username);
                         char tipoConexion = usuario.getUsu_conexion();
+                        
+                        System.out.println("validando usuario : "+username + "   y su estado es :"+tipoConexion);
                         if (tipoConexion != 'B') {
                             if (tipoConexion != 'I'){
                                 frmSplash splash = new frmSplash();
@@ -163,8 +167,13 @@ public class frmAcceso extends javax.swing.JFrame {
                            aviso.setVisible(true);
                         }
                     } else {
-                        //aca hacer logica para controlar cuando se equivoca por tercera vez en el login, debe bloquear la cuenta.
-                        JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, reintente nuevamente", "Validar Credenciales", 2);
+                        //aca hacer logica para controlar cuando se equivoca por tercera vez en el login, debe bloquear la cuenta.            
+                        if (contador > 2){
+                           this.bloquearUsuario(username, paswname);
+                        }else{
+                           JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, intento N° "+contador+"\n                    Reintente nuevamente", "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
+                           contador++;
+                        }
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
@@ -175,6 +184,7 @@ public class frmAcceso extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una cuenta de Usuario en el campo Usuario", "Mensaje Alerta", 2);
         }
+
     }//GEN-LAST:event_BtnEntrarActionPerformed
 
     private void cbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsernameActionPerformed
@@ -256,6 +266,17 @@ public class frmAcceso extends javax.swing.JFrame {
         fecha = anio+"-"+mess+"-"+dias;
         horas = hora+":"+minu+":"+segu;
         System.out.println("FECHA HORA DEL SISTEMA : " + fecha + " " +horas);
+    }
+
+    private void bloquearUsuario(String username, String passwname) throws SQLException {
+        this.cargaFechaHora();
+        boolean valida = Usuario.bloqueaUsuario(username, "", fecha, horas);
+                
+        if (valida){
+            JOptionPane.showMessageDialog(this, "El usuario "+username+" ha sido bloqueado en el sistema por "+contador+" intentos fallidos \n                    Espere 15 minutos para su liberación", "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, ERROR);
+        }
     }
     
 }

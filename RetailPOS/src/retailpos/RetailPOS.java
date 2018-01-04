@@ -1,14 +1,8 @@
 package retailpos;
 
-import Clases.Comuna;
 import Clases.Conexion;
-import Clases.Perfil;
-import Clases.Sucursal;
 import clases.Usuario;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
 import javax.swing.JFrame;
 
 public class RetailPOS {
@@ -16,7 +10,7 @@ public class RetailPOS {
     public static void main(String[] args) throws SQLException {
         Conexion.conectar();
 
-        boolean valida = Usuario.agregarUsuario("0013",3);
+       // boolean valida = Usuario.agregarUsuario("0013",3,"0001");
         
             JFrame.setDefaultLookAndFeelDecorated(true);
             JFrame login = new frmAcceso();

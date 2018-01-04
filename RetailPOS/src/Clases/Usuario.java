@@ -305,7 +305,7 @@ public class Usuario {
         ResultSet objRes;
         boolean resultado = false;
 
-        String sql = "select usu_id_usua, usu_id_perf, , usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
+        String sql = "select usu_id_usua, usu_id_perf, usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
                 + "usu_usr_creacion, usu_usr_modific"
                 + " from EMDTUSU where usu_id_usua = '" + id_usua + "'  and usu_passw = '" + passw + "';";
@@ -313,7 +313,7 @@ public class Usuario {
         objRes = Conexion.sentencia.executeQuery(sql);
 
         while (objRes.next()) {
-            if (objRes.getString(1).equals(id_usua) && objRes.getString(7).equals(passw)) {
+            if (objRes.getString(1).equals(id_usua) && objRes.getString(8).equals(passw)) {
                 resultado = true;
             }
         }
@@ -352,5 +352,27 @@ public class Usuario {
 
         return resultado;
     }
+ 
+    public static boolean bloqueaUsuario(String username, String passname, String fecBloqueo, String horBloqueo) throws SQLException {
+        boolean resultado = false;
 
+        try {
+            //UPDATE EMDTUSU SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '2018-01-01',`USU_HOR_BLOQ` = '08:01:01' WHERE `USU_ID_USUA` = '0001';
+            String sql = "UPDATE EMDTUSU"
+                    + " SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '"+fecBloqueo+"',`USU_HOR_BLOQ` = '"+horBloqueo+"'"
+                    + " WHERE `USU_ID_USUA` = '"+username+"';";
+
+            System.out.println("BOQUEAR USUARIO = "+sql);
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+            
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+    
 }
