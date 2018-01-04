@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class RetailPOS {
 
     public static void main(String[] args) throws SQLException {
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         Conexion.conectar();
 
         // boolean valida = Usuario.agregarUsuario("0013",3,"0001");
