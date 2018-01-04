@@ -10,14 +10,13 @@ public class RetailPOS {
     public static void main(String[] args) throws SQLException {
         Conexion.conectar();
 
-       // boolean valida = Usuario.agregarUsuario("0013",3,"0001");
-        
-            JFrame.setDefaultLookAndFeelDecorated(true);
-            JFrame login = new frmAcceso();
-            login.setLocationRelativeTo(null);
-            login.setResizable(false);
-            login.setVisible(true);
-        
+        // boolean valida = Usuario.agregarUsuario("0013",3,"0001");
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame login = new frmAcceso();
+        login.setLocationRelativeTo(null);
+        login.setResizable(false);
+        login.setVisible(true);
+
         //LISTADO DE CAMPOS DE USUARIO:
         //    ResultSet listadousuario = Usuario.listarUsuarios("0001");
         //    while (listadousuario.next()) {
