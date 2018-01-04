@@ -359,7 +359,7 @@ public class Usuario {
         try {
             //UPDATE EMDTUSU SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '2018-01-01',`USU_HOR_BLOQ` = '08:01:01' WHERE `USU_ID_USUA` = '0001';
             String sql = "UPDATE EMDTUSU"
-                    + " SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '"+fecBloqueo+"',`USU_HOR_BLOQ` = '"+horBloqueo+"'"
+                    + " SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = CURRENT_DATE,`USU_HOR_BLOQ` = '"+horBloqueo+"'"
                     + " WHERE `USU_ID_USUA` = '"+username+"';";
 
             System.out.println("BOQUEAR USUARIO = "+sql);
