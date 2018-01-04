@@ -44,15 +44,15 @@ public class frmSplash extends javax.swing.JFrame {
                   timer.stop();
                   esconder();
 
-              //    JFrame frmMenuPrin = new frmMenuPrincipal();
-              //    Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-              //    int height = pantalla.height;
-              //    int width = pantalla.width;
-              //    //muestra el menu principal tomando valores de la pantalla
-              //    frmMenuPrin.setSize(width, height - 35);                  
-              //    frmMenuPrin.setLocationRelativeTo(null);
-              //    frmMenuPrin.setVisible(true);
-              //    frmMenuPrin.show();
+                  JFrame frmMenuPrin = new frmMenuPrincipal();
+                  Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+                  int height = pantalla.height;
+                  int width = pantalla.width;
+                  //muestra el menu principal tomando valores de la pantalla
+                  frmMenuPrin.setSize(width, height - 35);                  
+                  frmMenuPrin.setLocationRelativeTo(null);
+                  frmMenuPrin.setVisible(true);
+                  frmMenuPrin.show();
 
             }
         }
