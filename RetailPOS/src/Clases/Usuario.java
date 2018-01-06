@@ -374,5 +374,10 @@ public class Usuario {
 
         return resultado;
     }
+
+
+    //estamos resolviendo el metodo eliminar
+   
+
     
 }
