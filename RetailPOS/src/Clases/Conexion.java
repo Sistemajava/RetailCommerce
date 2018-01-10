@@ -19,11 +19,15 @@ public class Conexion {
     /*
      * Varialbes para conexion Remota a otra BD desde la Internet.
      */
-    public static String bd = "maty2907_BEMP001";
-    public static String login = "maty2907_retail";
-    public static String password = "comercio123.";
+    //public static String bd = "maty2907_BEMP001";
+    public static String bd = "bdretail";
+    //public static String login = "maty2907_retail";
+    public static String login = "root";
+    //public static String password = "comercio123.";
+    public static String password = "";
     public static int port = 3306;
-    public static String host = "192.254.250.166";
+    //public static String host = "192.254.250.166";
+    public static String host = "localhost";
     public static String url = "jdbc:mysql://" + host + ":" + port + "/" + bd;
 
     /*

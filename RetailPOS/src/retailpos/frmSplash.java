@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static javax.management.timer.Timer.ONE_SECOND;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -46,8 +45,8 @@ public class frmSplash extends javax.swing.JFrame {
 
                   JFrame frmMenuPrin = new frmMenuPrincipal();
                   Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-                  int height = pantalla.height;
-                  int width = pantalla.width;
+                  int height = pantalla.height - (pantalla.height * 50)/100;
+                  int width  = pantalla.width  - (pantalla.width * 50)/100;
                   //muestra el menu principal tomando valores de la pantalla
                   frmMenuPrin.setSize(width, height - 35);                  
                   frmMenuPrin.setLocationRelativeTo(null);
