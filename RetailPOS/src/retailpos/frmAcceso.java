@@ -156,9 +156,11 @@ public class frmAcceso extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(this, "Usuario Inactivo en el Sistema, contacte al Administrador del sistema", "Validar Credenciales", 2);
                             }
                         } else {
-                           //   String fecBloqueo = usuario.getUsu_fec_bloq();
-                           //   String horBloqueo = usuario.getUsu_hor_bloq();
-                           //   this.cargaFechaHora();
+                              String fecBloqueo = usuario.getUsu_fec_bloq();
+                              String horBloqueo = usuario.getUsu_hor_bloq();
+                              this.cargaFechaHora();
+                              System.out.println("FECHA BLOQUEO : "+fecBloqueo);
+                              System.out.println("HORA  BLOQUEO : "+horBloqueo);
                            
                            // aca se debe validar la fecha hora de conexion para identificar si ha sido desbloqueado
                            frmAvisoSesion aviso = new frmAvisoSesion();
@@ -260,7 +262,7 @@ public class frmAcceso extends javax.swing.JFrame {
         segu = calendario.get(Calendar.SECOND);
 
         dias = Integer.toString(calendario.get(Calendar.DATE));
-        mess = Integer.toString(calendario.get(Calendar.MONTH));
+        mess = Integer.toString(calendario.get(Calendar.MONTH) +1);
         anio = Integer.toString(calendario.get(Calendar.YEAR));
         
         fecha = anio+"-"+mess+"-"+dias;
