@@ -388,6 +388,8 @@ public class Usuario {
             String sql = "select usu_id_usua,"
                     + "usu_passw, "
                     + "usu_nombres,"
+                    + "usu_apell1,"
+                    + "usu_apell2,"
                     + "usu_estado, "
                     + "usu_conexion "
                     + "from EMDTUSU;";
@@ -399,8 +401,10 @@ public class Usuario {
                 usr.setUsu_id_usua(objRes.getString(1));
                 usr.setUsu_passw(objRes.getString(2));
                 usr.setUsu_nombres(objRes.getString(3));
-                usr.setUsu_estado(String.valueOf(objRes.getObject(4)).charAt(0));
-                usr.setUsu_conexion(String.valueOf(objRes.getObject(5)).charAt(0));
+                usr.setUsu_apell1(objRes.getString(4));
+                usr.setUsu_apell2(objRes.getString(5));
+                usr.setUsu_estado(String.valueOf(objRes.getObject(6)).charAt(0));
+                usr.setUsu_conexion(String.valueOf(objRes.getObject(7)).charAt(0));
 
                 arrayListaUsr.add(usr);
             }

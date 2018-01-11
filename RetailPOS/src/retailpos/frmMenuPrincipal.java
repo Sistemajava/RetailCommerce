@@ -231,14 +231,29 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu12.add(jSeparator21);
 
         jMenuItem23.setText("Modificar Usuarios");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem23);
         jMenu12.add(jSeparator22);
 
         jMenuItem24.setText("Consultar Usuarios");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem24);
         jMenu12.add(jSeparator23);
 
         jMenuItem25.setText("Listar Usuarios");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem25);
         jMenu12.add(jSeparator24);
 
@@ -356,12 +371,33 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
           
-        frmUsuario pantalla = new frmUsuario();
+        frmUsuario pantalla = new frmUsuario(0);
         pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
         
         
     }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+          
+        frmUsuario pantalla = new frmUsuario(1);
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+          
+        frmUsuario pantalla = new frmUsuario(2);
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+
+        frmUsuario pantalla = new frmUsuario(3);
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     /**
      * @param args the command line arguments
