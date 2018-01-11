@@ -274,4 +274,26 @@ public class Producto {
 
         return resultado;
     }
+
+    /**
+     * 11-01-2018 Actualizacion de metodo eliminar
+     *
+     * @param idProducto
+     * @return
+     * @throws java.lang.Exception
+     */
+    public static boolean eliminarProducto(String idProducto) throws Exception {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTPRO SET pro_estado = 'I' where pro_id_pro = idProducto";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idProducto)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

@@ -274,4 +274,25 @@ public class Sucursal {
         return resultado;
     }
 
+    /**
+     * 11-01-2018 Acutalizacion de metodo eliminar
+     *
+     * @param idSucursal
+     * @return
+     * @throws java.lang.Exception
+     */
+    public static boolean eliminarSucursal(String idSucursal) throws Exception {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTSUC SET suc_estado = 'I' where suc_id_suc = idSucursal";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idSucursal)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

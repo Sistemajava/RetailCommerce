@@ -188,4 +188,26 @@ public class Linea {
         }
         return resultado;
     }
+
+    /**
+     * 11-01-2018 Acutalizacion de metodo eliminar
+     *
+     * @param idLinea
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean eliminarLinea(String idLinea) throws SQLException {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMTLIN SET lin_estado = 'I' where lin_id_lin = idLinea";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idLinea)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

@@ -213,8 +213,7 @@ public class Perfil {
                     + "per_aut_info,per_aut_vent, per_aut_gest, per_aut_cmpr," //-> PERMISOS
                     + "per_tst_creacion," + "per_tst_modific,"
                     + "per_usr_creacion," + "per_usr_modific"
-                    
-                    + "VALUES ('" 
+                    + "VALUES ('"
                     + id_perfil + ","
                     + "'CAJERO',"
                     + "'A',"
@@ -234,4 +233,26 @@ public class Perfil {
         }
         return resultado;
     }
+
+    /**
+     * 11-01-2018 Actualizacion de metodo eliminar
+     *
+     * @param idPerfil
+     * @return
+     * @throws java.lang.Exception
+     */
+    public static boolean eliminarPerfil(String idPerfil) throws Exception {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTPER SET per_estado = 'I' where per_id_per = idPerfil";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idPerfil)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

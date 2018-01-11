@@ -235,4 +235,27 @@ public class Stock {
 
         return resultado;
     }
+
+    /**
+     * 11-01-2018 Actualizacion de metodo eliminar
+     *
+     * @param codSuc
+     * @param codBarra
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean eliminarStock(String codSuc, String codBarra) throws SQLException {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTSTK SET stk_estado = 'I' where stk_cod_suc = codSuc and stk_cod_barra = codBarra";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(codSuc) && objRes.getString(2).equals(codBarra)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

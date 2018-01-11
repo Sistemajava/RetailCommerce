@@ -3,6 +3,7 @@ package clases;
 import Clases.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Usuario {
 
@@ -352,20 +353,20 @@ public class Usuario {
 
         return resultado;
     }
- 
+
     public static boolean bloqueaUsuario(String username, String passname, String fecBloqueo, String horBloqueo) throws SQLException {
         boolean resultado = false;
 
         try {
             //UPDATE EMDTUSU SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '2018-01-01',`USU_HOR_BLOQ` = '08:01:01' WHERE `USU_ID_USUA` = '0001';
             String sql = "UPDATE EMDTUSU"
-                    + " SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = CURRENT_DATE,`USU_HOR_BLOQ` = '"+horBloqueo+"'"
-                    + " WHERE `USU_ID_USUA` = '"+username+"';";
+                    + " SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = CURRENT_DATE,`USU_HOR_BLOQ` = '" + horBloqueo + "'"
+                    + " WHERE `USU_ID_USUA` = '" + username + "';";
 
-            System.out.println("BOQUEAR USUARIO = "+sql);
+            System.out.println("BOQUEAR USUARIO = " + sql);
             Conexion.sentencia = Conexion.conn.prepareStatement(sql);
             Conexion.sentencia.execute(sql);
-            
+
             resultado = true;
 
         } catch (Exception e) {
@@ -375,9 +376,59 @@ public class Usuario {
         return resultado;
     }
 
+    /**
+     * 10-01-2018 Metodo listar usuario con tablas especificas
+     *
+     * @return
+     */
+    public ArrayList ListarUsuarioJtable() {
+        ArrayList arrayListaUsr = new ArrayList();
+        ResultSet objRes;
+        try {
+            String sql = "select usu_id_usua,"
+                    + "usu_passw, "
+                    + "usu_nombres,"
+                    + "usu_estado, "
+                    + "usu_conexion "
+                    + "from EMDTUSU;";
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            objRes = Conexion.sentencia.executeQuery(sql);
 
-    //estamos resolviendo el metodo eliminar
-   
+            while (objRes.next()) {
+                Usuario usr = new Usuario();
+                usr.setUsu_id_usua(objRes.getString(1));
+                usr.setUsu_passw(objRes.getString(2));
+                usr.setUsu_nombres(objRes.getString(3));
+                usr.setUsu_estado(String.valueOf(objRes.getObject(4)).charAt(0));
+                usr.setUsu_conexion(String.valueOf(objRes.getObject(5)).charAt(0));
 
-    
+                arrayListaUsr.add(usr);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return arrayListaUsr;
+    }
+
+    /**
+     * 11-01-2018 Actualizacion de metodo eliminar
+     *
+     * @param idUsuario
+     * @return
+     * @throws java.lang.Exception
+     */
+    public static boolean eliminarUsuario(String idUsuario) throws Exception {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTUSU SET usu_estado = 'I' where usu_id_usua = idUsuario";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idUsuario)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
 }

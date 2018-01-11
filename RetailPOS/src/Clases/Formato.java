@@ -238,4 +238,26 @@ public class Formato {
         }
         return resultado;
     }
+
+    /**
+     * 11-01-2018 Actualizacion Metodo eliminar
+     *
+     * @param idFormato
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean eliminarFormato(String idFormato) throws SQLException {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDFRM SET frm_estado = 'I' where frm_id_frm = idFormato";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(1).equals(idFormato)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
+
 }

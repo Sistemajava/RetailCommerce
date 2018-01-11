@@ -219,4 +219,24 @@ public class Caja {
         return resultado;
     }
 
+    /**
+     * 11-01-2018 Actualizacion de METODO ELIMINAR
+     *
+     * @param idCaja
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static boolean eliminarCaja(String idCaja) throws SQLException {
+        boolean resultado = false;
+        ResultSet objRes;
+        String sql = "UPDATE EMDTPOS SET pos_estado = 'I' where pos_id_pos = idCaja";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        while (objRes.next()) {
+            if (objRes.getString(2).equals(idCaja)) {
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
 }
