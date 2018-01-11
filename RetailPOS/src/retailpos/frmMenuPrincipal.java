@@ -222,6 +222,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu12.setText("Usuarios");
 
         jMenuItem22.setText("Agregar Usuarios");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu12.add(jMenuItem22);
         jMenu12.add(jSeparator21);
 
@@ -348,6 +353,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+          
+        frmUsuario pantalla = new frmUsuario();
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     /**
      * @param args the command line arguments
