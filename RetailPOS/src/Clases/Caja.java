@@ -220,7 +220,7 @@ public class Caja {
     }
 
     /**
-     * 11-01-2018 Actualizacion de METODO ELIMINAR
+     * 11-01-2018 METODO ELIMINAR CAJA
      *
      * @param idCaja
      * @return
@@ -229,7 +229,7 @@ public class Caja {
     public static boolean eliminarCaja(String idCaja) throws SQLException {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTPOS SET pos_estado = 'I' where pos_id_pos = idCaja";
+        String sql = "UPDATE EMDTPOS SET pos_estado = 'I' where pos_id_pos = " + idCaja + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -238,5 +238,23 @@ public class Caja {
             }
         }
         return resultado;
+    }
+
+    /**
+     * 11-01-2018 
+     * METODO LISTAR CAJA 
+     * USADO EN COMBOBOX EN FRMUSUARIO 
+     * EN PESTAÑA LISTAR
+     *
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet ListarCboCaja() throws SQLException {
+        String strSql;
+        strSql = "select POS_ID_POS from EMDTPOS;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
     }
 }

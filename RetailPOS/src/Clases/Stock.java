@@ -237,7 +237,7 @@ public class Stock {
     }
 
     /**
-     * 11-01-2018 Actualizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR STOCK
      *
      * @param codSuc
      * @param codBarra
@@ -247,7 +247,7 @@ public class Stock {
     public static boolean eliminarStock(String codSuc, String codBarra) throws SQLException {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTSTK SET stk_estado = 'I' where stk_cod_suc = codSuc and stk_cod_barra = codBarra";
+        String sql = "UPDATE EMDTSTK SET stk_estado = 'I' where stk_cod_suc = codSuc and stk_cod_barra = " + codBarra + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -258,4 +258,20 @@ public class Stock {
         return resultado;
     }
 
+    /** 12-01-2018
+     * METODO LISTAR STOCK
+     * USADO EN COMBOBOX EN FRMUSUARIO
+     * EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboStock() throws SQLException {
+        String strSql;
+        strSql = "select STK_ESTADO from EMDTSTK;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
+    }
 }

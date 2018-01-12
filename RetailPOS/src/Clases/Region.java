@@ -133,4 +133,21 @@ public class Region {
         }
         return resultado;
     }
+    
+    /** 12-01-2018 
+     * METODO LISTAR REGION
+     * USADO EN FRMUSUARIO
+     * EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboRegion() throws Exception {
+        String strSql;
+        strSql = "select REG_NOMBRE from EMDTREG;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
+    }
 }

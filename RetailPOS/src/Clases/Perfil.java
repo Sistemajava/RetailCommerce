@@ -235,7 +235,7 @@ public class Perfil {
     }
 
     /**
-     * 11-01-2018 Actualizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR PERFIL
      *
      * @param idPerfil
      * @return
@@ -244,7 +244,7 @@ public class Perfil {
     public static boolean eliminarPerfil(String idPerfil) throws Exception {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTPER SET per_estado = 'I' where per_id_per = idPerfil";
+        String sql = "UPDATE EMDTPER SET per_estado = 'I' where per_id_per = " + idPerfil + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -253,6 +253,23 @@ public class Perfil {
             }
         }
         return resultado;
+    }
+    
+    /** 12-01-2018
+     * METODO LISTAR PERFIL
+     * USADO EN COMBOBOX EN FRMUSUARIO
+     * EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboPerfil() throws Exception {
+        String strSql;
+        strSql = "select PER_NOM_PERF from EMDTPER;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
     }
 
 }

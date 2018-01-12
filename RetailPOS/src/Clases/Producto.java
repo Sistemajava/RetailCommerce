@@ -276,7 +276,7 @@ public class Producto {
     }
 
     /**
-     * 11-01-2018 Actualizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR PRODUCTO
      *
      * @param idProducto
      * @return
@@ -285,7 +285,7 @@ public class Producto {
     public static boolean eliminarProducto(String idProducto) throws Exception {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTPRO SET pro_estado = 'I' where pro_id_pro = idProducto";
+        String sql = "UPDATE EMDTPRO SET pro_estado = 'I' where pro_id_pro = " + idProducto + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -295,5 +295,21 @@ public class Producto {
         }
         return resultado;
     }
-
+    
+    /** 12-01-2018
+     * METODO LISTAR PRODUCTO
+     * USADO EN COMBOBOX EN FRMUSUARIO
+     * EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboProducto() throws SQLException {
+        String strSql;
+        strSql = "select PRO_NOMBRE from EMDTPRO;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
+    }
 }

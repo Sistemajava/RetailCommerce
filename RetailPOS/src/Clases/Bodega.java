@@ -126,4 +126,22 @@ public class Bodega {
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
     }
+
+    /**
+     * 11-01-2018 
+     * METODO LISTAR BODEGA 
+     * USADO EN COMBOBOX EN FRMUSUARIO 
+     * EN PESTAÑA LISTAR
+     *
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet ListarCboBodega() throws SQLException {
+        String strSql;
+        strSql = "select BOD_COD_BARRA from EMDTBOD;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
+    }
 }

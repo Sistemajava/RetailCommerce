@@ -275,7 +275,7 @@ public class Sucursal {
     }
 
     /**
-     * 11-01-2018 Acutalizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR SUCURSAL
      *
      * @param idSucursal
      * @return
@@ -284,7 +284,7 @@ public class Sucursal {
     public static boolean eliminarSucursal(String idSucursal) throws Exception {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTSUC SET suc_estado = 'I' where suc_id_suc = idSucursal";
+        String sql = "UPDATE EMDTSUC SET suc_estado = 'I' where suc_id_suc = " + idSucursal + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -294,14 +294,18 @@ public class Sucursal {
         }
         return resultado;
     }
-    
-    /** 11-01-2018 Metodo listar sucursal en combo
-     * 
+
+    /**
+     * 11-01-2018 
+     * METODO LISTAR SUCURSAL 
+     * USADO EN CONBOBOX EN FRMUSUARIO 
+     * EN PESTAÑA LISTAR
+     *
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static ResultSet ListarSucursalesCombo() throws SQLException {
-        String strSql;        
+        String strSql;
         strSql = "select SUC_ID_SUC from EMDTSUC;";
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(strSql);

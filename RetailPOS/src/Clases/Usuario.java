@@ -416,7 +416,7 @@ public class Usuario {
     }
 
     /**
-     * 11-01-2018 Actualizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR USUARIO
      *
      * @param idUsuario
      * @return
@@ -434,5 +434,22 @@ public class Usuario {
             }
         }
         return resultado;
+    }
+    
+    /** 12-01-2018
+     * METODO LISTAR USUARIO
+     * USADO EN COMBOBOX EN FRMUSUARIO
+     * EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboUsuario() throws Exception {
+        String strSql;
+        strSql = "select USU_ID_USUA from EMDTUSU;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
     }
 }

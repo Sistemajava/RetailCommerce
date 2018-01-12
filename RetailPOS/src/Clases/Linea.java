@@ -190,7 +190,7 @@ public class Linea {
     }
 
     /**
-     * 11-01-2018 Acutalizacion de metodo eliminar
+     * 11-01-2018 METODO ELIMINAR LINEA
      *
      * @param idLinea
      * @return
@@ -199,7 +199,7 @@ public class Linea {
     public static boolean eliminarLinea(String idLinea) throws SQLException {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMTLIN SET lin_estado = 'I' where lin_id_lin = idLinea";
+        String sql = "UPDATE EMTLIN SET lin_estado = 'I' where lin_id_lin = " + idLinea + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -208,6 +208,23 @@ public class Linea {
             }
         }
         return resultado;
+    }
+    
+    /** 12-01-2018 
+     * METODO LISTAR LINEA
+     * USADO EN COMBOBOX 
+     * EN FRMUSUARIO EN PESTAÑA LISTAR
+     * 
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet listarCboLinea() throws Exception {
+        String strSql;
+        strSql = "select LIN_NOM_LINEA from EMDTLIN;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
     }
 
 }

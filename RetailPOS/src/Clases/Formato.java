@@ -240,7 +240,7 @@ public class Formato {
     }
 
     /**
-     * 11-01-2018 Actualizacion Metodo eliminar
+     * 11-01-2018 METODO ELIMINAR FORMATO
      *
      * @param idFormato
      * @return
@@ -249,7 +249,7 @@ public class Formato {
     public static boolean eliminarFormato(String idFormato) throws SQLException {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDFRM SET frm_estado = 'I' where frm_id_frm = idFormato";
+        String sql = "UPDATE EMDFRM SET frm_estado = 'I' where frm_id_frm = " + idFormato + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {
@@ -258,6 +258,22 @@ public class Formato {
             }
         }
         return resultado;
+    }
+    
+    /** 12-01-2018 
+     * METODO LISTAR FORMATO
+     * USADO EN COMBOBOX EN FRMUSUARIO 
+     * EN PESTAÑA LISTAR
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet ListarCboFormato() throws Exception {
+        String strSql;
+        strSql = "select FRM_NOM_FORM from EMDTFRM;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
     }
 
 }

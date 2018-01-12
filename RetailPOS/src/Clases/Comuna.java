@@ -137,7 +137,7 @@ public class Comuna {
         ResultSet objRes;
         boolean resultado = false;
         String sql = "delete com_id_com,com_id_reg,com_nombre,"
-                + "from EMDTCOM where com_id_com = idComuna";
+                + "from EMDTCOM where com_id_com = " + idComuna + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
 
@@ -147,5 +147,22 @@ public class Comuna {
             }
         }
         return resultado;
+    }
+
+    /**
+     * 11-01-2018 
+     * METODO LISTAR COMUNA 
+     * USADO EN COMBOBOX EN FRMUSUARIO 
+     * EN PESTAÑA LISTAR
+     * @return 
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet ListarCboComuna() throws SQLException {
+        String strSql;
+        strSql = "select COM_NOMBRE from EMDTCOM;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;  
     }
 }
