@@ -294,5 +294,15 @@ public class Sucursal {
         }
         return resultado;
     }
+    
+    public static ResultSet ListarSucursalesCombo() throws SQLException {
+        String strSql;        
+        strSql = "select SUC_ID_SUC from EMDTSUC;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+
+        return objRes;
+    }
 
 }

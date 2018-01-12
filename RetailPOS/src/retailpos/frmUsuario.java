@@ -5,7 +5,9 @@
  */
 package retailpos;
 
+import Clases.Sucursal;
 import clases.Usuario;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +23,9 @@ public class frmUsuario extends javax.swing.JFrame {
      */
     public frmUsuario(int tipoPantalla) {
         initComponents();
+        
+        //aca llamaremos todos los metodos para cargar los combos 
+        this.cargaComboSucursales();
         
         //aca damos la configuracion inicial para setear pantalla segun donde sea llamado.
         this.TablaPaneles.setSelectedIndex(tipoPantalla);
@@ -66,6 +71,8 @@ public class frmUsuario extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListaUsuario = new javax.swing.JTable();
+        cbSucursal = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,7 +216,7 @@ public class frmUsuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID USUARIO", "PASSWORD", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
+                "OPERADOR", "PASS", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -228,19 +235,31 @@ public class frmUsuario extends javax.swing.JFrame {
             tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(60);
         }
 
+        jLabel1.setText("Sucursal");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -370,6 +389,8 @@ public class frmUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbSucursal;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -437,5 +458,18 @@ public class frmUsuario extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
+    }
+
+    private void cargaComboSucursales() {
+        try {
+            ResultSet cargar = Sucursal.ListarSucursalesCombo();
+            cbSucursal.removeAllItems();
+            while (cargar.next()) {
+                cbSucursal.addItem(cargar.getString(1));
+                cbSucursal.setSelectedIndex(-1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar combo Sucursales en:" + e);
+        }
     }
 }
