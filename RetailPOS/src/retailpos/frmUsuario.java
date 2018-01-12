@@ -37,7 +37,7 @@ public class frmUsuario extends javax.swing.JFrame {
             case 2:
                  this.btnGrabar.setEnabled(false);
             case 3:
-                this.btnGrabar.setEnabled(false);
+                 this.btnGrabar.setEnabled(false);
         }
     }
 
