@@ -425,7 +425,7 @@ public class Usuario {
     public static boolean eliminarUsuario(String idUsuario) throws Exception {
         boolean resultado = false;
         ResultSet objRes;
-        String sql = "UPDATE EMDTUSU SET usu_estado = 'I' where usu_id_usua = idUsuario";
+        String sql = "UPDATE EMDTUSU SET usu_estado = 'I' where usu_id_usua = " + idUsuario + ";";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         while (objRes.next()) {

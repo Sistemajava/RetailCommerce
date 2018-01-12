@@ -295,6 +295,11 @@ public class Sucursal {
         return resultado;
     }
     
+    /** 11-01-2018 Metodo listar sucursal en combo
+     * 
+     * @return
+     * @throws SQLException 
+     */
     public static ResultSet ListarSucursalesCombo() throws SQLException {
         String strSql;        
         strSql = "select SUC_ID_SUC from EMDTSUC;";
