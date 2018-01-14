@@ -29,6 +29,9 @@ public class Usuario {
     private String usu_tst_modific;
     private String usu_usr_creacion;
     private String usu_usr_modific;
+    private String usu_frm_nombre;
+    private String usu_frm_id;
+    private String usu_frm_Slogan;
 
     //CONSTRUCTORES:
     public Usuario() {
@@ -62,7 +65,8 @@ public class Usuario {
                 + "usu_tst_modific, "
                 + "usu_usr_creacion,"
                 + " usu_usr_modific"
-                + " from EMDTUSU where usu_id_usua = '" + useName + "';";
+                + " from EMDTUSU "
+                + "where usu_id_usua = '" + useName + "';";
 
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
@@ -91,8 +95,19 @@ public class Usuario {
             setUsu_tst_modific(String.valueOf(objRes.getTimestamp(19)));
             setUsu_usr_creacion((String) objRes.getObject(20));
             setUsu_usr_modific((String) objRes.getObject(21));
+            
+            if (getUsu_id_sucu() != ""){
+               String sqlFrm = "Select FRM_NOM_FORM, SUC_ID_FRM, FRM_SLOGAN FROM EMDTSUC, EMDTFRM WHERE SUC_ID_FRM  = FRM_ID_FRM  AND SUC_ID_SUC  =  '"+getUsu_id_sucu()+"';";
+               Conexion.sentencia = Conexion.conn.prepareStatement(sqlFrm);
+               objRes = Conexion.sentencia.executeQuery(sqlFrm);
+               
+                while (objRes.next()) {
+                    setUsu_frm_nombre((String) objRes.getObject(1));
+                    setUsu_frm_id((String) objRes.getObject(2));
+                    setUsu_frm_Slogan((String) objRes.getObject(3));
+                }
+            }
         }
-
     }
 
     //implementar metodo con ingreso de usuario y passw
@@ -264,6 +279,30 @@ public class Usuario {
     public void setUsu_usr_modific(String usu_usr_modific) {
         this.usu_usr_modific = usu_usr_modific;
     }
+    
+    public String getUsu_frm_nombre() {
+        return usu_frm_nombre;
+    }
+
+    public void setUsu_frm_nombre(String usu_frm_nombre) {
+        this.usu_frm_nombre = usu_frm_nombre;
+    }
+
+    public String getUsu_frm_id() {
+        return usu_frm_id;
+    }
+
+    public void setUsu_frm_id(String usu_frm_id) {
+        this.usu_frm_id = usu_frm_id;
+    }
+    
+    public String getUsu_frm_Slogan() {
+        return usu_frm_Slogan;
+    }
+
+    public void setUsu_frm_Slogan(String usu_frm_Slogan) {
+        this.usu_frm_Slogan = usu_frm_Slogan;
+    }
 
     //METODO LISTAR todos los USUARIOS:
     public static ResultSet listarUsuarios() throws SQLException {
@@ -305,6 +344,7 @@ public class Usuario {
     public static boolean validaPassword(String id_usua, String passw) throws SQLException {
         ResultSet objRes;
         boolean resultado = false;
+        Conexion.CONEXION_USERID_KO = id_usua;
 
         String sql = "select usu_id_usua, usu_id_perf, usu_id_sucu, usu_nombres, usu_apell1, usu_apell2, usu_dni, usu_passw, usu_estado, usu_fec_esta, usu_ind_jefe, "
                 + "usu_fec_alta, usu_fec_lic_desde, usu_fec_lic_hasta, usu_conexion, usu_fec_bloq, usu_hor_bloq, usu_tst_creacion, usu_tst_modific, "
@@ -316,6 +356,8 @@ public class Usuario {
         while (objRes.next()) {
             if (objRes.getString(1).equals(id_usua) && objRes.getString(8).equals(passw)) {
                 resultado = true;
+                Conexion.CONEXION_USERID_OK = id_usua;
+                Conexion.CONEXION_USERID_KO = "";
             }
         }
         return resultado;
@@ -354,7 +396,7 @@ public class Usuario {
         return resultado;
     }
 
-    public static boolean bloqueaUsuario(String username, String passname, String fecBloqueo, String horBloqueo) throws SQLException {
+    public static boolean bloqueaUsuario(String username, String fecBloqueo, String horBloqueo) throws SQLException {
         boolean resultado = false;
 
         try {
@@ -373,6 +415,46 @@ public class Usuario {
             resultado = false;
         }
 
+        return resultado;
+    }
+    
+    public static boolean validaStamBloqueo(String idUsua, String fecBl, String horBl, String fecAct, String horAct) throws SQLException {
+        boolean valido = false;
+        ResultSet objRes;
+        //TIMESTAMPDIFF(MINUTE,TIMESTAMP(USU_FEC_BLOQ,USU_HOR_BLOQ),CURRENT_TIMESTAMP())
+        String sql = "select TIMESTAMPDIFF(MINUTE,TIMESTAMP(USU_FEC_BLOQ,USU_HOR_BLOQ),  TIMESTAMP('"+fecAct+"','"+horAct+"')) "
+                   + " from EMDTUSU "
+                   + " where usu_id_usua = '" + idUsua + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        objRes = Conexion.sentencia.executeQuery(sql);
+        
+        while (objRes.next()) {            
+            //System.out.println("Tiempo del ultimo Bloqueo : "+objRes.getString(1));
+            if(objRes.getInt(1) > 15 ){
+                 valido = true;
+            }            
+        }        
+        return valido;
+    }
+    
+    
+    public static boolean desbloqueaUsuario(String username) throws SQLException {
+        boolean resultado = false;
+
+        try {
+            //UPDATE EMDTUSU SET `USU_CONEXION` = 'B', `USU_FEC_BLOQ` = '2018-01-01',`USU_HOR_BLOQ` = '08:01:01' WHERE `USU_ID_USUA` = '0001';
+            String sql = "UPDATE EMDTUSU"
+                    + " SET `USU_CONEXION` = 'N', `USU_FEC_BLOQ` = '0001-01-01',`USU_HOR_BLOQ` = '00:00:00'"
+                    + " WHERE `USU_ID_USUA` = '" + username + "';";
+
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            Conexion.sentencia.execute(sql);
+
+            resultado = true;
+
+        } catch (Exception e) {
+            resultado = false;
+        }
         return resultado;
     }
 

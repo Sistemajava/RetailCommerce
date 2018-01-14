@@ -35,6 +35,9 @@ public class Conexion {
      */
     public static Connection conn;
     public static Statement sentencia;
+    public static String CONEXION_USERID_OK;
+    public static String CONEXION_USERID_KO;
+    public static String CONEXION_USERID_AN;
 
     public static void conectar() {
         try {

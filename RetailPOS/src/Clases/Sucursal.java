@@ -41,10 +41,10 @@ public class Sucursal {
                 + "suc_id_gVenta,"
                 + "suc_fec_alta,"
                 + "suc_tst_creacion,"
-                + "suc_tst_modificacion,"
+                + "suc_tst_modific,"
                 + "suc_usr_creacion,"
                 + "suc_usr_modific"
-                + "from EMDTSUC where reg_id_reg = '" + id_sucursal + "';";
+                + " from EMDTSUC where suc_id_suc = '" + id_sucursal + "';";
 
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);

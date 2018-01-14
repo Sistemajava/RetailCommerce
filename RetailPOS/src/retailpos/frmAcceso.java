@@ -25,6 +25,7 @@ public class frmAcceso extends javax.swing.JFrame {
     private static int contador = 1;
     String fecha;
     String horas;
+    private String usrLoginError;
 
     public frmAcceso() throws SQLException {
         initComponents();
@@ -130,55 +131,32 @@ public class frmAcceso extends javax.swing.JFrame {
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
         
         String username = (String) this.cbUsername.getSelectedItem();
-        String paswname = this.txtPassword.getText();
-
+        String paswname =          this.txtPassword.getText().trim();
+        
         if (this.cbUsername.getSelectedIndex() != -1) {
             if (this.txtPassword.getText().length() > 0) {
-
-                boolean valida = false;
+                boolean valida = false; 
                 try {
-                    valida = Usuario.validaPassword(username, paswname);
-                    if (valida) {
-                        //en este punto ya validamos que el usuario y contraseña son los correctos, ahora necesitamos validar el estado de bloqueo. y el tiempo de desbloqueo.
-
-                        Usuario usuario = new Usuario(username);
-                        char tipoConexion = usuario.getUsu_conexion();
-                        
-                        System.out.println("validando usuario : "+username + "   y su estado es :"+tipoConexion);
-                        if (tipoConexion != 'B') {
-                            if (tipoConexion != 'I'){
-                                frmSplash splash = new frmSplash();
-                                splash.setLocationRelativeTo(null);
-                                splash.setResizable(false);
-                                splash.setVisible(true);
-                                this.dispose();
-                            }else{
-                                JOptionPane.showMessageDialog(this, "Usuario Inactivo en el Sistema, contacte al Administrador del sistema", "Validar Credenciales", 2);
-                            }
-                        } else {
-                              String fecBloqueo = usuario.getUsu_fec_bloq();
-                              String horBloqueo = usuario.getUsu_hor_bloq();
-                              this.cargaFechaHora();
-                              System.out.println("FECHA BLOQUEO : "+fecBloqueo);
-                              System.out.println("HORA  BLOQUEO : "+horBloqueo);
-                           
-                           // aca se debe validar la fecha hora de conexion para identificar si ha sido desbloqueado
-                           frmAvisoSesion aviso = new frmAvisoSesion();
-                           aviso.setLocationRelativeTo(null);
-                           aviso.setResizable(false);
-                           aviso.setVisible(true);
-                        }
-                    } else {
-                        //aca hacer logica para controlar cuando se equivoca por tercera vez en el login, debe bloquear la cuenta.            
-                        if (contador > 2){
-                           this.bloquearUsuario(username, paswname);
-                        }else{
-                           JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, intento N° "+contador+"\n                    Reintente nuevamente", "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
-                           contador++;
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
+                     valida = Usuario.validaPassword(username, paswname);
+                     if(valida){
+                          this.validaUsuarioEstado(username);
+                     }else{
+                         if(Conexion.CONEXION_USERID_AN != Conexion.CONEXION_USERID_KO){
+                             contador = 1;                             
+                          //   System.out.println("EL ANTERIOR NO ES IGUAL AL USER ACTUAL : "+Conexion.CONEXION_USERID_AN+" / "+ Conexion.CONEXION_USERID_KO);
+                             Conexion.CONEXION_USERID_AN = Conexion.CONEXION_USERID_KO;
+                         }else{
+                           // System.out.println("EL ANTERIOR SI ES IGUAL AL USER ACTUAL : "+Conexion.CONEXION_USERID_AN+" / "+ Conexion.CONEXION_USERID_KO);
+                             if (contador > 2){
+                                 this.bloquearUsuario(username);
+                             }else{
+                                 JOptionPane.showMessageDialog(this, "La password ingresada es incorrecta, intento N° "+contador+"\n                    Reintente nuevamente", "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
+                                 contador++;
+                             }
+                         }
+                     }
+                } catch (Exception e) {
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Debe ingresar una contraseña para el Usuario " + username + " en el campo password", "Mensaje Alerta", 2);
@@ -270,15 +248,58 @@ public class frmAcceso extends javax.swing.JFrame {
         System.out.println("FECHA HORA DEL SISTEMA : " + fecha + " " +horas);
     }
 
-    private void bloquearUsuario(String username, String passwname) throws SQLException {
+    private void bloquearUsuario(String username) throws SQLException {
         this.cargaFechaHora();
-        boolean valida = Usuario.bloqueaUsuario(username, "", fecha, horas);
+        boolean valida = Usuario.bloqueaUsuario(username, fecha, horas);
                 
         if (valida){
             JOptionPane.showMessageDialog(this, "El usuario "+username+" ha sido bloqueado en el sistema por "+contador+" intentos fallidos \n                    Espere 15 minutos para su liberación", "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(this, ERROR);
         }
+    }
+
+    private void validaUsuarioEstado(String username) throws SQLException {
+        
+        Usuario usr = new Usuario(username);
+        
+        switch (usr.getUsu_conexion()){
+            case 'S': //si esta conectado, por lo tanto debe avisar que no puede iniciar nueva sesion.  --> 2018-01-12 18:06:51
+                String fechCnx = usr.getUsu_tst_modific().substring(1,  10);
+                String horaCnx = usr.getUsu_tst_modific().substring(12, 19);
+                
+                JOptionPane.showMessageDialog(this, "Usuario "+username+" ya tiene una conexion iniciada a las \n                     "+fechCnx+" "+horaCnx, "Validar Credenciales", JOptionPane.ERROR_MESSAGE);
+                
+            case 'N': //no esta conectado, y se debe permitir iniciar sesion
+                Conexion.CONEXION_USERID_OK = username;
+                Conexion.CONEXION_USERID_AN = "";
+                Conexion.CONEXION_USERID_KO = "";
+                
+            case 'B': //esta bloqueado, revisar si se puede activar por los 15 min de espera.
+                boolean valida = validarDesbloqueo(username,usr.getUsu_fec_bloq(), usr.getUsu_hor_bloq());
+                        
+                if(valida){
+                   Usuario.desbloqueaUsuario(username);
+                   frmSplash splash = new frmSplash();
+                   splash.setLocationRelativeTo(null);
+                   splash.setResizable(false);
+                   splash.setVisible(true);
+                   this.dispose();
+                }else{
+                   frmAvisoSesion aviso = new frmAvisoSesion();
+                   aviso.setLocationRelativeTo(null);
+                   aviso.setResizable(false);
+                   aviso.setVisible(true);
+                }
+           }          
+    }
+
+    private boolean validarDesbloqueo(String usrID, String fecBloqueo, String horBloqueo) throws SQLException {
+        boolean valida = false;
+        this.cargaFechaHora();
+        valida = Usuario.validaStamBloqueo(usrID,fecBloqueo,horBloqueo,fecha,horas);
+        
+        return valida;
     }
     
 }

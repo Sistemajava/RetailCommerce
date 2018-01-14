@@ -9,6 +9,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -43,16 +46,20 @@ public class frmSplash extends javax.swing.JFrame {
                   timer.stop();
                   esconder();
 
-                  JFrame frmMenuPrin = new frmMenuPrincipal();
-                  Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-                  int height = pantalla.height - (pantalla.height * 50)/100;
-                  int width  = pantalla.width  - (pantalla.width * 50)/100;
-                  //muestra el menu principal tomando valores de la pantalla
-                  frmMenuPrin.setSize(width, height - 35);                  
-                  frmMenuPrin.setLocationRelativeTo(null);
-                  frmMenuPrin.setVisible(true);
-                  frmMenuPrin.show();
-
+                  JFrame frmMenuPrin;
+                try {
+                    frmMenuPrin = new frmMenuPrincipal();
+                    //Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+                    //int height = pantalla.height - (pantalla.height * 50)/100;
+                    //int width  = pantalla.width  - (pantalla.width * 50)/100;
+                    //muestra el menu principal tomando valores de la pantalla
+                    //frmMenuPrin.setSize(width, height - 35);                  
+                    frmMenuPrin.setLocationRelativeTo(null);
+                    frmMenuPrin.setVisible(true);
+                    frmMenuPrin.show();
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmSplash.class.getName()).log(Level.SEVERE, null, ex);
+                }                 
             }
         }
     }
@@ -75,6 +82,7 @@ public class frmSplash extends javax.swing.JFrame {
         Icono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
 
         Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/89629.gif"))); // NOI18N
@@ -103,6 +111,7 @@ public class frmSplash extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

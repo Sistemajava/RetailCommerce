@@ -17,8 +17,8 @@ public class Formato {
     private String frm_hr_fin;
     private String frm_tst_creacion;
     private String frm_tst_modific;
-    private char frm_usr_creacion;
-    private char frm_usr_modific;
+    private String frm_usr_creacion;
+    private String frm_usr_modific;
 
     /**
      * Constructor clase con acceso a base de datos
@@ -30,17 +30,18 @@ public class Formato {
         String sql = "select frm_id_frm, "
                 + "frm_nom_form, "
                 + "frm_slogan,"
-                + "cant_caja,"
+                + "frm_cant_caja,"
                 + "frm_estado,"
-                + "fec_estado,"
-                + "fec_alta,"
+                + "frm_fec_esta,"
+                + "frm_fec_alta,"
                 + "frm_hr_ini,"
                 + "frm_hr_fin,"
                 + "frm_tst_creacion,"
                 + "frm_tst_modific,"
                 + "frm_usr_creacion,"
                 + "frm_usr_modific"
-                + "from EMDTFRM where frm_id_frm = '" + id_formato + "';";
+                + " from EMDTFRM "
+                + "where frm_id_frm = '" + id_formato + "';";
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
@@ -58,8 +59,8 @@ public class Formato {
             setFrm_hr_fin(String.valueOf(objRes.getTime(9)));
             setFrm_tst_creacion(String.valueOf(objRes.getTimestamp(10)));
             setFrm_tst_modific(String.valueOf(objRes.getTimestamp(11)));
-            setFrm_usr_creacion(String.valueOf(objRes.getObject(12)).charAt(0));
-            setFrm_usr_modific(String.valueOf(objRes.getObject(13)).charAt(0));
+            setFrm_usr_creacion(String.valueOf(objRes.getObject(12)));
+            setFrm_usr_modific(String.valueOf(objRes.getObject(13)));
         }
     }
 
@@ -152,19 +153,19 @@ public class Formato {
         this.frm_tst_modific = frm_tst_modific;
     }
 
-    public char getFrm_usr_creacion() {
+    public String getFrm_usr_creacion() {
         return frm_usr_creacion;
     }
 
-    public void setFrm_usr_creacion(char frm_usr_creacion) {
+    public void setFrm_usr_creacion(String frm_usr_creacion) {
         this.frm_usr_creacion = frm_usr_creacion;
     }
 
-    public char getFrm_usr_modific() {
+    public String getFrm_usr_modific() {
         return frm_usr_modific;
     }
 
-    public void setFrm_usr_modific(char frm_usr_modific) {
+    public void setFrm_usr_modific(String frm_usr_modific) {
         this.frm_usr_modific = frm_usr_modific;
     }
 
