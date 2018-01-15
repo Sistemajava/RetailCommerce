@@ -612,6 +612,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu8.setText("RESPALDO");
 
         jMenuItem12.setText("Backup BD");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem12);
 
         jMenuItem13.setText("Carga BD");
@@ -805,6 +810,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
          submenu.setResizable(false);
          submenu.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        frmBackup back = new frmBackup();
+        back.setLocationRelativeTo(null);
+        back.setResizable(false);
+        back.setVisible(true);
+               
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
