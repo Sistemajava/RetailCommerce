@@ -263,7 +263,7 @@ public class Perfil {
      * @return
      * @throws java.sql.SQLException
      */
-    public static ResultSet listarCboPerfil() throws Exception {
+    public static ResultSet listarPerfilesCombo() throws Exception {
         String strSql;
         strSql = "select PER_NOM_PERF from EMDTPER;";
         ResultSet objRes;
