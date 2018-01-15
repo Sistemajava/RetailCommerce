@@ -32,6 +32,7 @@ public class Usuario {
     private String usu_frm_nombre;
     private String usu_frm_id;
     private String usu_frm_Slogan;
+    private String usu_per_nombre;
 
     //CONSTRUCTORES:
     public Usuario() {
@@ -105,6 +106,14 @@ public class Usuario {
                     setUsu_frm_nombre((String) objRes.getObject(1));
                     setUsu_frm_id((String) objRes.getObject(2));
                     setUsu_frm_Slogan((String) objRes.getObject(3));
+                    
+                    String sqlPer = "Select PER_ID_PERF,PER_NOM_PERF FROM EMDTPER WHERE PER_ID_PERF  = "+getUsu_id_perf()+";";
+                    Conexion.sentencia = Conexion.conn.prepareStatement(sqlPer);
+                    objRes = Conexion.sentencia.executeQuery(sqlPer);
+                    
+                    while (objRes.next()) {
+                        setUsu_per_Nombre((String) objRes.getObject(2));
+                    }
                 }
             }
         }
@@ -303,6 +312,15 @@ public class Usuario {
     public void setUsu_frm_Slogan(String usu_frm_Slogan) {
         this.usu_frm_Slogan = usu_frm_Slogan;
     }
+    
+    public String getUsu_per_Nombre() {
+        return usu_per_nombre;
+    }
+
+    public void setUsu_per_Nombre(String usu_per_Nombre) {
+        this.usu_per_nombre = usu_per_Nombre;
+    }
+    
 
     //METODO LISTAR todos los USUARIOS:
     public static ResultSet listarUsuarios() throws SQLException {

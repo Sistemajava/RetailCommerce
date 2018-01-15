@@ -382,10 +382,13 @@ public class frmUsuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbListaUsuario);
         if (tbListaUsuario.getColumnModel().getColumnCount() > 0) {
+            tbListaUsuario.getColumnModel().getColumn(0).setResizable(false);
             tbListaUsuario.getColumnModel().getColumn(0).setPreferredWidth(23);
+            tbListaUsuario.getColumnModel().getColumn(1).setResizable(false);
             tbListaUsuario.getColumnModel().getColumn(1).setPreferredWidth(23);
-            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(40);
-            tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(40);
+            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(33);
+            tbListaUsuario.getColumnModel().getColumn(6).setResizable(false);
+            tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(33);
         }
 
         jLabel1.setText("Sucursal");
@@ -408,7 +411,7 @@ public class frmUsuario extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cb3Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -430,8 +433,8 @@ public class frmUsuario extends javax.swing.JFrame {
             jPanelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TablaPaneles.addTab("LISTAR", jPanelListar);

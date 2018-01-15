@@ -31,10 +31,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         this.txtOperador.setText(" OPERADOR : " + instUsr.getUsu_id_usua());
         this.txtSucursal.setText(" SUCURSAL : " + instUsr.getUsu_id_sucu());
         this.txtFormato.setText(" FORMATO : " + instUsr.getUsu_frm_nombre());
+        this.txtPerfil.setText(" PERFIL : " + instUsr.getUsu_per_Nombre());
         
         this.txtOperador.setBackground(Color.BLUE);           
         this.txtSucursal.setBackground(Color.BLUE); 
         this.txtFormato.setBackground(Color.BLUE); 
+        this.txtPerfil.setBackground(Color.BLUE); 
         
         this.setTitle("    COMERCIO RETAIL ®                     " + instUsr.getUsu_frm_Slogan());
     }
@@ -58,7 +60,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         txtOperador = new javax.swing.JTextField();
         txtSucursal = new javax.swing.JTextField();
         txtFormato = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtPerfil = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -245,9 +247,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTextField5.setEnabled(false);
+        txtPerfil.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txtPerfil.setEnabled(false);
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextField6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -668,15 +670,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtOperador, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                        .addComponent(txtOperador, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -704,7 +706,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                             .addComponent(txtOperador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -974,10 +976,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField txtFormato;
     private javax.swing.JTextField txtOperador;
+    private javax.swing.JTextField txtPerfil;
     private javax.swing.JTextField txtSucursal;
     // End of variables declaration//GEN-END:variables
 }
