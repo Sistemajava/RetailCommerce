@@ -456,13 +456,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        
-        try {
-           Conexion.desconectar();    
-           this.dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
+       
+            JOptionPane.showMessageDialog(this, "Desarrollador : Emilio Gajardo. ® ");        
         
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -471,8 +466,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmUsuario pantalla = new frmUsuario(0);
         pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
-        
-        
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
@@ -528,7 +521,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFormatoMouseEntered
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
-        // TODO add your handling code here:
+             try {
+               Conexion.desconectar();    
+               this.dispose();
+                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                 }
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     /**
