@@ -369,7 +369,7 @@ public class frmUsuario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "OPERADOR", "PASS", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
+                "OPER.", "PASS", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -382,10 +382,10 @@ public class frmUsuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbListaUsuario);
         if (tbListaUsuario.getColumnModel().getColumnCount() > 0) {
-            tbListaUsuario.getColumnModel().getColumn(0).setPreferredWidth(60);
-            tbListaUsuario.getColumnModel().getColumn(1).setPreferredWidth(60);
-            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(50);
-            tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(60);
+            tbListaUsuario.getColumnModel().getColumn(0).setPreferredWidth(23);
+            tbListaUsuario.getColumnModel().getColumn(1).setPreferredWidth(23);
+            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(40);
+            tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
         jLabel1.setText("Sucursal");
@@ -612,7 +612,7 @@ public class frmUsuario extends javax.swing.JFrame {
                 arreg[2] = arreglo.getUsu_nombres();
                 arreg[3] = arreglo.getUsu_apell1();
                 arreg[4] = arreglo.getUsu_apell2();
-                if (arreglo.getUsu_estado() == 'A'){arreg[5] = "Activo";}else{arreg[3] = "Inactivo";}
+                if (arreglo.getUsu_estado() == 'A'){arreg[5] = "Activo";}else{arreg[5] = "Inactivo";}
                 //arreg[3] = arreglo.getUsu_estado();
                 if (arreglo.getUsu_conexion()== 'B'){arreg[6] = "Bloqueado";}
                 if (arreglo.getUsu_conexion()== 'N'){arreg[6] = "Disponible";}

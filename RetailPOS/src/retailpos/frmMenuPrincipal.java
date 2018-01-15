@@ -85,6 +85,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem73 = new javax.swing.JMenuItem();
         jMenuItem70 = new javax.swing.JMenuItem();
         jMenuItem72 = new javax.swing.JMenuItem();
+        jMenuItem77 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem64 = new javax.swing.JMenuItem();
         jMenuItem66 = new javax.swing.JMenuItem();
@@ -158,6 +159,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem61 = new javax.swing.JMenuItem();
         jMenuItem62 = new javax.swing.JMenuItem();
         jMenuItem63 = new javax.swing.JMenuItem();
+        jMenu29 = new javax.swing.JMenu();
+        jMenu30 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -328,11 +331,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu25.add(jMenu26);
 
-        jMenuItem70.setText("Consultas");
+        jMenuItem70.setText("Consulta Promociones");
         jMenu25.add(jMenuItem70);
 
-        jMenuItem72.setText("jMenuItem72");
+        jMenuItem72.setText("Organizar Promociones");
         jMenu25.add(jMenuItem72);
+
+        jMenuItem77.setText("Asignacion Promociones");
+        jMenu25.add(jMenuItem77);
 
         jMenu3.add(jMenu25);
 
@@ -593,6 +599,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu24.add(jMenuItem63);
 
         jMenu5.add(jMenu24);
+
+        jMenu29.setText("Informe por Area");
+        jMenu5.add(jMenu29);
+
+        jMenu30.setText("Informe por Linea");
+        jMenu5.add(jMenu30);
 
         jMenuBar1.add(jMenu5);
 
@@ -861,7 +873,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu26;
     private javax.swing.JMenu jMenu27;
     private javax.swing.JMenu jMenu28;
+    private javax.swing.JMenu jMenu29;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu30;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -943,6 +957,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem74;
     private javax.swing.JMenuItem jMenuItem75;
     private javax.swing.JMenuItem jMenuItem76;
+    private javax.swing.JMenuItem jMenuItem77;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;

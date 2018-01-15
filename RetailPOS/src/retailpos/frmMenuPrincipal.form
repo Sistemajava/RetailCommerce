@@ -143,12 +143,17 @@
                 </Menu>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem70">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Consultas"/>
+                    <Property name="text" type="java.lang.String" value="Consulta Promociones"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem72">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jMenuItem72"/>
+                    <Property name="text" type="java.lang.String" value="Organizar Promociones"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem77">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Asignacion Promociones"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -576,6 +581,16 @@
                   </Properties>
                 </MenuItem>
               </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu29">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Informe por Area"/>
+              </Properties>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu30">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Informe por Linea"/>
+              </Properties>
             </Menu>
           </SubComponents>
         </Menu>
