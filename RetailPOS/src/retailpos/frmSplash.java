@@ -5,8 +5,6 @@
  */
 package retailpos;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -21,7 +19,7 @@ import javax.swing.Timer;
  */
 public class frmSplash extends javax.swing.JFrame {
     public final static int ONE_SECOND = 27;
-    private Timer timer;
+    private final Timer timer;
     int cont;
 
     /**
@@ -37,6 +35,7 @@ public class frmSplash extends javax.swing.JFrame {
     }
     
     class TimerListener implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent evt) {
             cont++;
             //jLabel1.setText("nume es :"+cont);
@@ -142,10 +141,8 @@ public class frmSplash extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmSplash().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmSplash().setVisible(true);
         });
     }
 

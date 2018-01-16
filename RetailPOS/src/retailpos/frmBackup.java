@@ -105,10 +105,8 @@ public class frmBackup extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmBackup().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmBackup().setVisible(true);
         });
     }
 

@@ -141,10 +141,8 @@ public class frmPPConfig extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmPPConfig().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmPPConfig().setVisible(true);
         });
     }
 

@@ -5,6 +5,7 @@
  */
 package retailpos;
 
+import Clases.Formato;
 import Clases.Perfil;
 import Clases.Sucursal;
 import clases.Usuario;
@@ -26,7 +27,7 @@ public class frmSucursal extends javax.swing.JFrame {
         initComponents();
         
         //aca llamaremos todos los metodos para cargar los combos 
-        this.cargaComboSucursales();
+        this.cargaComboFormatos();
         this.cargaComboPerfiles();
         
         //aca damos la configuracion inicial para setear pantalla segun donde sea llamado.
@@ -90,8 +91,8 @@ public class frmSucursal extends javax.swing.JFrame {
         jPanelListar = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListaUsuario = new javax.swing.JTable();
-        cb3Sucursal = new javax.swing.JComboBox<>();
+        tbListaSucursal = new javax.swing.JTable();
+        cb3Formato = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -363,35 +364,47 @@ public class frmSucursal extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        tbListaUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tbListaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tbListaSucursal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tbListaSucursal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "OPER.", "PASS", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
+                "SUCUR", "NOMBRE", "FORMATO", "DIRECCION", "GERENTE", "ESTADO"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbListaUsuario);
-        if (tbListaUsuario.getColumnModel().getColumnCount() > 0) {
-            tbListaUsuario.getColumnModel().getColumn(0).setResizable(false);
-            tbListaUsuario.getColumnModel().getColumn(0).setPreferredWidth(23);
-            tbListaUsuario.getColumnModel().getColumn(1).setResizable(false);
-            tbListaUsuario.getColumnModel().getColumn(1).setPreferredWidth(23);
-            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(33);
-            tbListaUsuario.getColumnModel().getColumn(6).setResizable(false);
-            tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(33);
+        jScrollPane1.setViewportView(tbListaSucursal);
+        if (tbListaSucursal.getColumnModel().getColumnCount() > 0) {
+            tbListaSucursal.getColumnModel().getColumn(0).setMinWidth(60);
+            tbListaSucursal.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tbListaSucursal.getColumnModel().getColumn(0).setMaxWidth(60);
+            tbListaSucursal.getColumnModel().getColumn(1).setResizable(false);
+            tbListaSucursal.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tbListaSucursal.getColumnModel().getColumn(2).setMinWidth(90);
+            tbListaSucursal.getColumnModel().getColumn(2).setPreferredWidth(90);
+            tbListaSucursal.getColumnModel().getColumn(2).setMaxWidth(90);
+            tbListaSucursal.getColumnModel().getColumn(4).setPreferredWidth(25);
+            tbListaSucursal.getColumnModel().getColumn(5).setMinWidth(60);
+            tbListaSucursal.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tbListaSucursal.getColumnModel().getColumn(5).setMaxWidth(60);
         }
 
-        jLabel1.setText("Sucursal");
+        jLabel1.setText("Formato");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -404,7 +417,7 @@ public class frmSucursal extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb3Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb3Formato, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -414,7 +427,7 @@ public class frmSucursal extends javax.swing.JFrame {
                 .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cb3Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb3Formato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -548,7 +561,7 @@ public class frmSucursal extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cb0Perfil;
     private javax.swing.JComboBox<String> cb0Sucursal;
-    private javax.swing.JComboBox<String> cb3Sucursal;
+    private javax.swing.JComboBox<String> cb3Formato;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -575,7 +588,7 @@ public class frmSucursal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTable tbListaUsuario;
+    private javax.swing.JTable tbListaSucursal;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -583,7 +596,7 @@ public class frmSucursal extends javax.swing.JFrame {
      *
      */
     private void limpiarTabla() {
-        DefaultTableModel Modelo = (DefaultTableModel) this.tbListaUsuario.getModel();
+        DefaultTableModel Modelo = (DefaultTableModel) this.tbListaSucursal.getModel();
 
         int a = Modelo.getRowCount() - 1;
         for (int i = a; i >= 0; i--) {
@@ -597,55 +610,49 @@ public class frmSucursal extends javax.swing.JFrame {
      * 10-01-2018 Metodo listar tabla
      */
     private void listarTabla() {
-        this.tbListaUsuario.removeAll();
+        this.tbListaSucursal.removeAll();
 
         try {
-            DefaultTableModel Modelo = (DefaultTableModel) this.tbListaUsuario.getModel();
-            Usuario usrnm = new Usuario();
+            DefaultTableModel Modelo = (DefaultTableModel) this.tbListaSucursal.getModel();
+            Sucursal sucur = new Sucursal();
 
-            ArrayList arrList_usr = usrnm.ListarUsuarioJtable();
-            Iterator itarrList_usr = arrList_usr.iterator();
+            ArrayList arrList_suc = sucur.ListarSucursalJtable();
+            Iterator itarrList_suc = arrList_suc.iterator();
 
-            while (itarrList_usr.hasNext()) {
-                Usuario arreglo = (Usuario) itarrList_usr.next();
-                Object[] arreg = new Object[7];
+            while (itarrList_suc.hasNext()) {
+                Sucursal arreglo = (Sucursal) itarrList_suc.next();
+                Object[] arreg = new Object[6];
 
                 //aca obtenemos las columnas.
-                arreg[0] = arreglo.getUsu_id_usua();
-                arreg[1] = arreglo.getUsu_passw();
-                arreg[2] = arreglo.getUsu_nombres();
-                arreg[3] = arreglo.getUsu_apell1();
-                arreg[4] = arreglo.getUsu_apell2();
-                if (arreglo.getUsu_estado() == 'A'){arreg[5] = "Activo";}else{arreg[5] = "Inactivo";}
-                //arreg[3] = arreglo.getUsu_estado();
-                if (arreglo.getUsu_conexion()== 'B'){arreg[6] = "Bloqueado";}
-                if (arreglo.getUsu_conexion()== 'N'){arreg[6] = "Disponible";}
-                if (arreglo.getUsu_conexion()== 'S'){arreg[6] = "Conectado";}
-                //arreg[6] = arreglo.getUsu_conexion();
+                arreg[0] = arreglo.getSuc_id_suc();
+                arreg[1] = arreglo.getSuc_nom_suc();                
+                arreg[2] = arreglo.getSuc_frm_nombre();
+                arreg[3] = arreglo.getSuc_nom_dir();
+                arreg[4] = arreglo.getSuc_id_gVenta();
+                if (arreglo.getSuc_estado() == 'A'){arreg[5] = true;}else{arreg[5] = false;}                                            
 
                 Modelo.addRow(arreg);
             }
 
-            this.tbListaUsuario.setModel(Modelo);
+            this.tbListaSucursal.setModel(Modelo);
 
         } catch (Exception e) {
         }
-
     }
 
-    private void cargaComboSucursales() {
+    private void cargaComboFormatos() {
         try {
-            ResultSet cargar = Sucursal.ListarSucursalesCombo();
+            ResultSet cargar = Formato.ListarFormatosCombo();
             cb0Sucursal.removeAllItems();
-            cb3Sucursal.removeAllItems();
+            cb3Formato.removeAllItems();
             while (cargar.next()) {
                 cb0Sucursal.addItem(cargar.getString(1));
                 cb0Sucursal.setSelectedIndex(-1);
-                cb3Sucursal.addItem(cargar.getString(1));
-                cb3Sucursal.setSelectedIndex(-1);
+                cb3Formato.addItem(cargar.getString(1));
+                cb3Formato.setSelectedIndex(-1);
             }
         } catch (Exception e) {
-            System.out.println("Error al listar combo Sucursales en:" + e);
+            System.out.println("Error al listar combo Formatos en:" + e);
         }
     }
 

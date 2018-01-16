@@ -22,6 +22,7 @@ public class Sucursal {
     private String suc_tst_modificacion;
     private String suc_usr_creacion;
     private String suc_usr_modific;
+    private String suc_frm_nombre;
 
     /**
      * CONSTRUCTOR CON ACCESO A BASE DE DATOS:
@@ -197,6 +198,15 @@ public class Sucursal {
     public void setSuc_usr_creacion(String suc_usr_creacion) {
         this.suc_usr_creacion = suc_usr_creacion;
     }
+    
+    public String getSuc_frm_nombre() {
+        return suc_frm_nombre;
+    }
+
+    public void setSuc_frm_nombre(String suc_frm_nombre) {
+        this.suc_frm_nombre = suc_frm_nombre;
+    }
+    
 
     /**
      * METODO LISTAR
@@ -326,44 +336,39 @@ public class Sucursal {
      * @return
      */
     public ArrayList ListarSucursalJtable() {
-        ArrayList arrayListaUsr = new ArrayList();
+        ArrayList arrayListaSuc = new ArrayList();
         ResultSet objRes;
         try {
             String sql = "select "
                     + "suc_id_suc,"
-                    + "suc_rut_suc,"
                     + "suc_nom_suc,"
                     + "suc_id_frm,"
-                    + "suc_estado,"
-                    + "suc_id_region,"
-                    + "suc_id_comuna,"
+                    + "frm_nom_form,"
                     + "suc_nom_dir,"
-                    + "suc_id_gVenta,"
-                    + "suc_fec_alta,"
-                    + "from EMDTSUC;";
+                    + "suc_id_gVenta,"                    
+                    + "suc_estado "                   
+                    + "from EMDTSUC, EMDTFRM "
+                    + "WHERE SUC_ID_FRM = FRM_ID_FRM ;";
             Conexion.sentencia = Conexion.conn.prepareStatement(sql);
             objRes = Conexion.sentencia.executeQuery(sql);
 
             while (objRes.next()) {
                 Sucursal suc = new Sucursal();
-                suc.setSuc_id_suc(objRes.getString(1));
-                suc.setSuc_rut_suc(objRes.getString(2));
-                suc.setSuc_nom_suc(objRes.getString(3));
-                suc.setSuc_id_frm(objRes.getString(4));
-                suc.setSuc_estado(String.valueOf(objRes.getString(5)).charAt(0));
-                suc.setSuc_id_region(objRes.getInt(6));
-                suc.setSuc_id_comuna(objRes.getInt(7));
-                suc.setSuc_nom_dir(objRes.getString(8));
-                suc.setSuc_id_gVenta(objRes.getString(9));
-                suc.setSuc_fec_alta(objRes.getString(10));
+                suc.setSuc_id_suc(objRes.getString(1));                
+                suc.setSuc_nom_suc(objRes.getString(2));
+                suc.setSuc_id_frm(objRes.getString(3));
+                suc.setSuc_frm_nombre(objRes.getString(4));
+                suc.setSuc_nom_dir(objRes.getString(5));
+                suc.setSuc_id_gVenta(objRes.getString(6));                
+                suc.setSuc_estado(String.valueOf(objRes.getString(7)).charAt(0));
 
-                arrayListaUsr.add(suc);
+                arrayListaSuc.add(suc);
             }
 
         } catch (Exception e) {
 
         }
-        return arrayListaUsr;
+        return arrayListaSuc;
     }
 
 }

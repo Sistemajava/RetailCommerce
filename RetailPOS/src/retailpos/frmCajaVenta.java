@@ -114,10 +114,8 @@ public class frmCajaVenta extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmCajaVenta().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmCajaVenta().setVisible(true);
         });
     }
 

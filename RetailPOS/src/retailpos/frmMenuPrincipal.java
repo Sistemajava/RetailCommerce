@@ -24,6 +24,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     
     /**
      * Creates new form frmMenuPrincipal
+     * @throws java.sql.SQLException
      */
     public frmMenuPrincipal() throws SQLException {
         initComponents();
@@ -931,13 +932,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new frmMenuPrincipal().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new frmMenuPrincipal().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

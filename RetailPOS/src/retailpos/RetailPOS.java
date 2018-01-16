@@ -1,7 +1,6 @@
 package retailpos;
 
 import Clases.Conexion;
-import clases.Usuario;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -11,16 +10,16 @@ public class RetailPOS {
         Conexion.conectar();
 
         JFrame.setDefaultLookAndFeelDecorated(true);
-       // JFrame login = new frmAcceso();
-       // login.setLocationRelativeTo(null);
-       // login.setResizable(false);
-       // login.setVisible(true);
+        JFrame login = new frmAcceso();
+        login.setLocationRelativeTo(null);
+        login.setResizable(false);
+        login.setVisible(true);
        
-       Conexion.CONEXION_USERID_OK = "0001";
-       JFrame menuprin = new frmMenuPrincipal();
-       menuprin.setLocationRelativeTo(null);
-       menuprin.setResizable(false);
-       menuprin.setVisible(true);
+       //Conexion.CONEXION_USERID_OK = "0001";
+       //JFrame menuprin = new frmMenuPrincipal();
+       //menuprin.setLocationRelativeTo(null);
+       //menuprin.setResizable(false);
+       //menuprin.setVisible(true);
 
     }
 

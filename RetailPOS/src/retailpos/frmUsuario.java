@@ -372,9 +372,16 @@ public class frmUsuario extends javax.swing.JFrame {
                 "OPER.", "PASS", "NOMBRE", "APELL PAT.", "APELL MAT.", "ESTADO", "CONEX"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -386,7 +393,9 @@ public class frmUsuario extends javax.swing.JFrame {
             tbListaUsuario.getColumnModel().getColumn(0).setPreferredWidth(23);
             tbListaUsuario.getColumnModel().getColumn(1).setResizable(false);
             tbListaUsuario.getColumnModel().getColumn(1).setPreferredWidth(23);
-            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(33);
+            tbListaUsuario.getColumnModel().getColumn(5).setMinWidth(60);
+            tbListaUsuario.getColumnModel().getColumn(5).setPreferredWidth(60);
+            tbListaUsuario.getColumnModel().getColumn(5).setMaxWidth(60);
             tbListaUsuario.getColumnModel().getColumn(6).setResizable(false);
             tbListaUsuario.getColumnModel().getColumn(6).setPreferredWidth(33);
         }
@@ -615,7 +624,7 @@ public class frmUsuario extends javax.swing.JFrame {
                 arreg[2] = arreglo.getUsu_nombres();
                 arreg[3] = arreglo.getUsu_apell1();
                 arreg[4] = arreglo.getUsu_apell2();
-                if (arreglo.getUsu_estado() == 'A'){arreg[5] = "Activo";}else{arreg[5] = "Inactivo";}
+                if (arreglo.getUsu_estado() == 'A'){arreg[5] = true;}else{arreg[5] = false;}
                 //arreg[3] = arreglo.getUsu_estado();
                 if (arreglo.getUsu_conexion()== 'B'){arreg[6] = "Bloqueado";}
                 if (arreglo.getUsu_conexion()== 'N'){arreg[6] = "Disponible";}

@@ -614,7 +614,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cb3Sucursal" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="cb3Formato" min="-2" pref="81" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -628,7 +628,7 @@
                               <EmptySpace pref="63" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cb3Sucursal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cb3Formato" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="223" max="-2" attributes="0"/>
@@ -645,40 +645,34 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tbListaUsuario">
+                        <Component class="javax.swing.JTable" name="tbListaSucursal">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="12" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="7" rowCount="0">
-                                <Column editable="false" title="OPER." type="java.lang.Object"/>
-                                <Column editable="false" title="PASS" type="java.lang.Object"/>
+                              <Table columnCount="6" rowCount="0">
+                                <Column editable="false" title="SUCUR" type="java.lang.Object"/>
                                 <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
-                                <Column editable="false" title="APELL PAT." type="java.lang.Object"/>
-                                <Column editable="false" title="APELL MAT." type="java.lang.Object"/>
-                                <Column editable="false" title="ESTADO" type="java.lang.Object"/>
-                                <Column editable="false" title="CONEX" type="java.lang.Object"/>
+                                <Column editable="false" title="FORMATO" type="java.lang.Object"/>
+                                <Column editable="false" title="DIRECCION" type="java.lang.Object"/>
+                                <Column editable="false" title="GERENTE" type="java.lang.Object"/>
+                                <Column editable="false" title="ESTADO" type="java.lang.Boolean"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="23" resizable="false">
+                                <Column maxWidth="60" minWidth="60" prefWidth="60" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="23" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                <Column maxWidth="90" minWidth="90" prefWidth="90" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -688,12 +682,12 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="33" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="25" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="33" resizable="false">
+                                <Column maxWidth="60" minWidth="60" prefWidth="60" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -707,7 +701,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="cb3Sucursal">
+                    <Component class="javax.swing.JComboBox" name="cb3Formato">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="0"/>
@@ -719,7 +713,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Sucursal"/>
+                        <Property name="text" type="java.lang.String" value="Formato"/>
                       </Properties>
                     </Component>
                   </SubComponents>

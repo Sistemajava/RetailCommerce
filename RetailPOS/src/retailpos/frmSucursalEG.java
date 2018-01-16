@@ -690,7 +690,7 @@ public class frmSucursalEG extends javax.swing.JFrame {
      */
     private void cargaComboFormato() {
         try {
-            ResultSet cargar = Formato.ListarCboIdFormato();
+            ResultSet cargar = Formato.ListarFormatosCombo();
             cboIdFormato.removeAllItems();
             while (cargar.next()) {
                 cboIdFormato.addItem(cargar.getString(1));
