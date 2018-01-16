@@ -2,6 +2,7 @@ package Clases;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Sucursal {
 
@@ -68,6 +69,12 @@ public class Sucursal {
             setSuc_usr_creacion((String) objRes.getObject(14));
             setSuc_usr_modific((String) objRes.getObject(15));
         }
+    }
+
+    /**
+     * 15-01-2018 Constructor vacio
+     */
+    public Sucursal() {
     }
 
     //GET Y SET:
@@ -296,10 +303,8 @@ public class Sucursal {
     }
 
     /**
-     * 11-01-2018 
-     * METODO LISTAR SUCURSAL 
-     * USADO EN CONBOBOX EN FRMUSUARIO 
-     * EN PESTAÑA LISTAR
+     * 11-01-2018 METODO LISTAR SUCURSAL USADO EN CONBOBOX EN FRMUSUARIO EN
+     * PESTAÑA LISTAR
      *
      * @return
      * @throws SQLException
@@ -312,6 +317,53 @@ public class Sucursal {
         objRes = Conexion.sentencia.executeQuery(strSql);
 
         return objRes;
+    }
+
+    /**
+     * 15-01-2018 Metodo listar sucursal con tablas especificas Metodo invocado
+     * desde frmSucursal en pestaña listar
+     *
+     * @return
+     */
+    public ArrayList ListarSucursalJtable() {
+        ArrayList arrayListaUsr = new ArrayList();
+        ResultSet objRes;
+        try {
+            String sql = "select "
+                    + "suc_id_suc,"
+                    + "suc_rut_suc,"
+                    + "suc_nom_suc,"
+                    + "suc_id_frm,"
+                    + "suc_estado,"
+                    + "suc_id_region,"
+                    + "suc_id_comuna,"
+                    + "suc_nom_dir,"
+                    + "suc_id_gVenta,"
+                    + "suc_fec_alta,"
+                    + "from EMDTSUC;";
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            objRes = Conexion.sentencia.executeQuery(sql);
+
+            while (objRes.next()) {
+                Sucursal suc = new Sucursal();
+                suc.setSuc_id_suc(objRes.getString(1));
+                suc.setSuc_rut_suc(objRes.getString(2));
+                suc.setSuc_nom_suc(objRes.getString(3));
+                suc.setSuc_id_frm(objRes.getString(4));
+                suc.setSuc_estado(String.valueOf(objRes.getString(5)).charAt(0));
+                suc.setSuc_id_region(objRes.getInt(6));
+                suc.setSuc_id_comuna(objRes.getInt(7));
+                suc.setSuc_nom_dir(objRes.getString(8));
+                suc.setSuc_id_gVenta(objRes.getString(9));
+                suc.setSuc_fec_alta(objRes.getString(10));
+
+                arrayListaUsr.add(suc);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return arrayListaUsr;
     }
 
 }
