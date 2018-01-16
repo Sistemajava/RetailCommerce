@@ -162,7 +162,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem62 = new javax.swing.JMenuItem();
         jMenuItem63 = new javax.swing.JMenuItem();
         jMenu29 = new javax.swing.JMenu();
+        jMenuItem78 = new javax.swing.JMenuItem();
+        jMenuItem79 = new javax.swing.JMenuItem();
+        jMenuItem80 = new javax.swing.JMenuItem();
+        jMenuItem81 = new javax.swing.JMenuItem();
         jMenu30 = new javax.swing.JMenu();
+        jMenuItem82 = new javax.swing.JMenuItem();
+        jMenuItem83 = new javax.swing.JMenuItem();
+        jMenuItem84 = new javax.swing.JMenuItem();
+        jMenuItem85 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -313,10 +321,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jMenu23.setText("Provision");
 
-        jMenuItem54.setText("jMenuItem50");
+        jMenuItem54.setText("Carga Locales");
         jMenu23.add(jMenuItem54);
 
-        jMenuItem55.setText("jMenuItem51");
+        jMenuItem55.setText("Carga Bodega Central");
         jMenu23.add(jMenuItem55);
 
         jMenu3.add(jMenu23);
@@ -388,6 +396,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu10.setText("Sucursales");
 
         jMenuItem14.setText("Agregar Sucursal");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem14);
 
         jMenuItem15.setText("Modificar Sucursal");
@@ -603,9 +616,35 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu5.add(jMenu24);
 
         jMenu29.setText("Informe por Area");
+
+        jMenuItem78.setText("jMenuItem6");
+        jMenu29.add(jMenuItem78);
+
+        jMenuItem79.setText("jMenuItem8");
+        jMenu29.add(jMenuItem79);
+
+        jMenuItem80.setText("jMenuItem7");
+        jMenu29.add(jMenuItem80);
+
+        jMenuItem81.setText("jMenuItem9");
+        jMenu29.add(jMenuItem81);
+
         jMenu5.add(jMenu29);
 
         jMenu30.setText("Informe por Linea");
+
+        jMenuItem82.setText("jMenuItem6");
+        jMenu30.add(jMenuItem82);
+
+        jMenuItem83.setText("jMenuItem8");
+        jMenu30.add(jMenuItem83);
+
+        jMenuItem84.setText("jMenuItem7");
+        jMenu30.add(jMenuItem84);
+
+        jMenuItem85.setText("jMenuItem9");
+        jMenu30.add(jMenuItem85);
+
         jMenu5.add(jMenu30);
 
         jMenuBar1.add(jMenu5);
@@ -821,6 +860,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+       frmSucursal sucur = new frmSucursal(0);
+       sucur.setLocationRelativeTo(null);
+       sucur.setResizable(false);
+       sucur.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -973,7 +1019,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem75;
     private javax.swing.JMenuItem jMenuItem76;
     private javax.swing.JMenuItem jMenuItem77;
+    private javax.swing.JMenuItem jMenuItem78;
+    private javax.swing.JMenuItem jMenuItem79;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem80;
+    private javax.swing.JMenuItem jMenuItem81;
+    private javax.swing.JMenuItem jMenuItem82;
+    private javax.swing.JMenuItem jMenuItem83;
+    private javax.swing.JMenuItem jMenuItem84;
+    private javax.swing.JMenuItem jMenuItem85;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField6;

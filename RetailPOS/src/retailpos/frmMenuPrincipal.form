@@ -109,12 +109,12 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem54">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jMenuItem50"/>
+                    <Property name="text" type="java.lang.String" value="Carga Locales"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem55">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jMenuItem51"/>
+                    <Property name="text" type="java.lang.String" value="Carga Bodega Central"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
@@ -243,6 +243,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar Sucursal"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem14ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
                   <Properties>
@@ -586,11 +589,55 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Informe por Area"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem78">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem6"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem79">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem8"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem80">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem7"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem81">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem9"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu30">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Informe por Linea"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem82">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem6"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem83">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem8"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem84">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem7"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem85">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="jMenuItem9"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
           </SubComponents>
         </Menu>
