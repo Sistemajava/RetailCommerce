@@ -55,6 +55,11 @@ public class frmPPConfig extends javax.swing.JFrame {
         });
 
         jButton5.setText("Sucursales");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +105,13 @@ public class frmPPConfig extends javax.swing.JFrame {
         pantallaUsr.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        frmSucursal sucur = new frmSucursal(3);
+       sucur.setLocationRelativeTo(null);
+       sucur.setResizable(false);
+       sucur.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

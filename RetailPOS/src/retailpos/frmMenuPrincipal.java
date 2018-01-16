@@ -404,12 +404,27 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu10.add(jMenuItem14);
 
         jMenuItem15.setText("Modificar Sucursal");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem15);
 
         jMenuItem16.setText("Consultar Sucursal");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem16);
 
         jMenuItem17.setText("Listar Sucursales");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem17);
 
         jMenu4.add(jMenu10);
@@ -866,6 +881,27 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        sucur.setResizable(false);
        sucur.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+       frmSucursal sucur = new frmSucursal(1);
+       sucur.setLocationRelativeTo(null);
+       sucur.setResizable(false);
+       sucur.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+       frmSucursal sucur = new frmSucursal(2);
+       sucur.setLocationRelativeTo(null);
+       sucur.setResizable(false);
+       sucur.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+       frmSucursal sucur = new frmSucursal(3);
+       sucur.setLocationRelativeTo(null);
+       sucur.setResizable(false);
+       sucur.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
