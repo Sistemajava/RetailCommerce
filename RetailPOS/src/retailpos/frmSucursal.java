@@ -8,7 +8,6 @@ package retailpos;
 import Clases.Formato;
 import Clases.Perfil;
 import Clases.Sucursal;
-import clases.Usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -514,7 +513,16 @@ public class frmSucursal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.limpiarTabla();
+        int pantallaSelecion = this.TablaPaneles.getSelectedIndex();
+        
+        switch(pantallaSelecion){
+          //  case 0:
+          //  case 1:
+          //  case 2:
+            case 3:
+                this.limpiarTabla();
+        }                                  
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
@@ -603,7 +611,6 @@ public class frmSucursal extends javax.swing.JFrame {
             //     System.out.println(" Tabla lista tiene ("+a+") filas, Fila Eliminada :" + i);
             Modelo.removeRow(i);
         }
-
     }
 
     /**

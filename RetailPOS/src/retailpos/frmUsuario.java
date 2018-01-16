@@ -510,7 +510,15 @@ public class frmUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.limpiarTabla();
+        int pantallaSelecion = this.TablaPaneles.getSelectedIndex();
+        
+        switch(pantallaSelecion){
+           // case 0:
+           // case 1:
+           // case 2:
+            case 3:
+                this.limpiarTabla();
+        }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
