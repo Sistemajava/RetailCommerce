@@ -277,4 +277,19 @@ public class Formato {
         return objRes;
     }
 
+     /** 15-01-2018 
+     * METODO LISTAR FORMATO
+     * USADO EN COMBOBOX EN FRMSUCURSAL
+     * EN PESTAÑA AGREGAR Y LISTAR
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public static ResultSet ListarCboIdFormato() throws Exception {
+        String strSql;
+        strSql = "select FRM_ID_FRM from EMDTFRM;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+        return objRes;
+    }
 }
