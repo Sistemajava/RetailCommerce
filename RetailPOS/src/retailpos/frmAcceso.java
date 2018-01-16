@@ -48,6 +48,12 @@ public class frmAcceso extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseEntered(evt);
+            }
+        });
+
         jLabel1.setText("Usuario");
 
         jLabel3.setText("pasword");
@@ -68,6 +74,11 @@ public class frmAcceso extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/retailpos/descarga.jpg"))); // NOI18N
 
+        cbUsername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbUsernameMouseEntered(evt);
+            }
+        });
         cbUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbUsernameActionPerformed(evt);
@@ -169,6 +180,22 @@ public class frmAcceso extends javax.swing.JFrame {
     private void cbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbUsernameActionPerformed
+
+    private void cbUsernameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbUsernameMouseEntered
+         try {
+            if (this.cbUsername.getSelectedIndex() > -1){
+                String username = (String) this.cbUsername.getSelectedItem();
+                Usuario usr  = new Usuario(username);                    
+                String texto = usr.getUsu_nombres()+" "+usr.getUsu_apell1()+" "+usr.getUsu_apell2()+"   Perfil : "+usr.getUsu_per_Nombre() ;
+                cbUsername.setToolTipText(texto);
+            }            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cbUsernameMouseEntered
+
+    private void txtPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseEntered
+              txtPassword.setToolTipText("Ingrese una contraseña Válida. tiene 3 intentos antes de bloquear el Usuario");
+    }//GEN-LAST:event_txtPasswordMouseEntered
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

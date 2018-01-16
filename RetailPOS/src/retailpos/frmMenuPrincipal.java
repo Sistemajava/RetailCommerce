@@ -32,7 +32,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         this.txtOperador.setText(" OPERADOR : " + instUsr.getUsu_id_usua());
         this.txtSucursal.setText(" SUCURSAL : " + instUsr.getUsu_id_sucu());
         this.txtFormato.setText(" FORMATO : " + instUsr.getUsu_frm_nombre());
-        this.txtPerfil.setText(" PERFIL : " + instUsr.getUsu_per_Nombre());
+        
+        if (instUsr.getUsu_id_perf() > 1){
+             this.txtPerfil.setText("  "+instUsr.getUsu_per_Nombre());
+        }else{
+            this.txtPerfil.setText(" PERFIL : " + instUsr.getUsu_per_Nombre());
+        }
+        
         
         this.txtOperador.setBackground(Color.BLUE);           
         this.txtSucursal.setBackground(Color.BLUE); 
@@ -176,6 +182,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem86 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu14 = new javax.swing.JMenu();
         jMenuItem30 = new javax.swing.JMenuItem();
@@ -684,6 +691,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenu2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jMenu2.setText("AYUDA");
 
+        jMenuItem86.setText("Registrar");
+        jMenuItem86.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem86ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem86);
+
         jMenuItem11.setText("Acerca de");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -770,6 +785,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+           try {
+               Usuario.desmarcaConexion(Conexion.CONEXION_USERID_OK);
+           } catch (Exception ex) {
+               Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -840,8 +860,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
              try {
+               Usuario.desmarcaConexion(Conexion.CONEXION_USERID_KO);
                Conexion.desconectar();    
-               this.dispose();
+               System.exit(0);
                  } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, e);
                  }
@@ -903,6 +924,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        sucur.setResizable(false);
        sucur.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem86ActionPerformed
+       frmRegistrar reg = new frmRegistrar();
+       reg.setLocationRelativeTo(null);
+       reg.setResizable(false);
+       reg.setVisible(true);
+    }//GEN-LAST:event_jMenuItem86ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1063,6 +1091,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem83;
     private javax.swing.JMenuItem jMenuItem84;
     private javax.swing.JMenuItem jMenuItem85;
+    private javax.swing.JMenuItem jMenuItem86;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField6;

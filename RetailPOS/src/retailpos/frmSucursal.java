@@ -395,9 +395,9 @@ public class frmSucursal extends javax.swing.JFrame {
             tbListaSucursal.getColumnModel().getColumn(0).setMaxWidth(60);
             tbListaSucursal.getColumnModel().getColumn(1).setResizable(false);
             tbListaSucursal.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tbListaSucursal.getColumnModel().getColumn(2).setMinWidth(90);
-            tbListaSucursal.getColumnModel().getColumn(2).setPreferredWidth(90);
-            tbListaSucursal.getColumnModel().getColumn(2).setMaxWidth(90);
+            tbListaSucursal.getColumnModel().getColumn(2).setMinWidth(80);
+            tbListaSucursal.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tbListaSucursal.getColumnModel().getColumn(2).setMaxWidth(80);
             tbListaSucursal.getColumnModel().getColumn(4).setPreferredWidth(25);
             tbListaSucursal.getColumnModel().getColumn(5).setMinWidth(60);
             tbListaSucursal.getColumnModel().getColumn(5).setPreferredWidth(60);

@@ -524,17 +524,35 @@ public class Usuario {
      */
     public static boolean eliminarUsuario(String idUsuario) throws Exception {
         boolean resultado = false;
-        ResultSet objRes;
-        String sql = "UPDATE EMDTUSU SET usu_estado = 'I' where usu_id_usua = " + idUsuario + ";";
+        
+        String sql = "UPDATE EMDTUSU SET usu_estado = 'I' where usu_id_usua = '" + idUsuario + "';";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
-        objRes = Conexion.sentencia.executeQuery(sql);
-        while (objRes.next()) {
-            if (objRes.getString(1).equals(idUsuario)) {
-                resultado = true;
-            }
-        }
+        resultado = Conexion.sentencia.execute(sql);
+
         return resultado;
     }
+    
+    public static boolean marcaConexion(String idUsuario) throws Exception {
+        boolean resultado = false;
+
+        String sql = "UPDATE EMDTUSU SET usu_conexion = 'S' where usu_id_usua = '" + idUsuario + "';";
+        System.out.println("SQL :"+sql);
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        resultado = Conexion.sentencia.execute(sql);
+
+        return resultado;
+    }
+    
+    public static boolean desmarcaConexion(String idUsuario) throws Exception {
+        boolean resultado = false;
+
+        String sql = "UPDATE EMDTUSU SET usu_conexion = 'N' where usu_id_usua = '" + idUsuario + "';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        resultado = Conexion.sentencia.execute(sql);
+
+        return resultado;
+    }
+    
     
     /** 12-01-2018
      * METODO LISTAR USUARIO
