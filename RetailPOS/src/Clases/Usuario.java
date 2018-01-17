@@ -323,7 +323,7 @@ public class Usuario {
     
 
     //METODO LISTAR todos los USUARIOS:
-    public static ResultSet listarUsuarios() throws SQLException {
+    public static ResultSet listarUsuariosCombo() throws SQLException {
         ResultSet objRes = null;
 
         String sql = "select usu_id_usua, usu_nombres from EMDTUSU;";
@@ -514,6 +514,44 @@ public class Usuario {
         }
         return arrayListaUsr;
     }
+    
+    public ArrayList ListarUsuarioJtable(String idFrm, String idSucur, String idPerf, String isEstado) {
+        ArrayList arrayListaUsr = new ArrayList();
+        ResultSet objRes;
+        try {
+            String sql = "select usu_id_usua,"
+                    + "usu_passw, "
+                    + "usu_nombres,"
+                    + "usu_apell1,"
+                    + "usu_apell2,"
+                    + "usu_estado, "
+                    + "usu_conexion "
+                    + "from EMDTUSU "
+                    + "WHERE 1 = 1 "+idSucur+" "+idPerf+" "+isEstado+";";
+            
+            System.out.println("CONSULTA LISTAR USUARIO : "+sql);
+            Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+            objRes = Conexion.sentencia.executeQuery(sql);
+
+            while (objRes.next()) {
+                Usuario usr = new Usuario();
+                usr.setUsu_id_usua(objRes.getString(1));
+                usr.setUsu_passw(objRes.getString(2));
+                usr.setUsu_nombres(objRes.getString(3));
+                usr.setUsu_apell1(objRes.getString(4));
+                usr.setUsu_apell2(objRes.getString(5));
+                usr.setUsu_estado(String.valueOf(objRes.getObject(6)).charAt(0));
+                usr.setUsu_conexion(String.valueOf(objRes.getObject(7)).charAt(0));
+
+                arrayListaUsr.add(usr);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return arrayListaUsr;
+    }
+    
 
     /**
      * 11-01-2018 METODO ELIMINAR USUARIO

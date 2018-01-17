@@ -277,4 +277,15 @@ public class Formato {
         return objRes;
     }
     
+    public static String ObtenerNombreSegunID(String nomFormato) throws SQLException{
+        String idFrm = "";
+        String sql = "select FRM_ID_FRM from EMDTFRM WHERE FRM_NOM_FORM = '"+nomFormato+"';";
+        Conexion.sentencia = Conexion.conn.prepareStatement(sql);
+        ResultSet rst = Conexion.sentencia.executeQuery(sql);
+        
+        while (rst.next()) {
+            idFrm = (String) rst.getObject(1);
+        }                    
+        return idFrm;
+    }
 }

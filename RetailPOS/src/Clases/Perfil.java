@@ -265,11 +265,14 @@ public class Perfil {
      */
     public static ResultSet listarPerfilesCombo() throws Exception {
         String strSql;
-        strSql = "select PER_NOM_PERF from EMDTPER;";
+        //strSql = "select PER_NOM_PERF from EMDTPER;";
+        strSql = "select CONCAT(PER_ID_PERF,' - ',PER_NOM_PERF) from EMDTPER;";
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
         objRes = Conexion.sentencia.executeQuery(strSql);
         return objRes;
     }
+    
+    
 
 }

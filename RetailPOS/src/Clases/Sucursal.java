@@ -321,7 +321,19 @@ public class Sucursal {
      */
     public static ResultSet ListarSucursalesCombo() throws SQLException {
         String strSql;
-        strSql = "select SUC_ID_SUC from EMDTSUC;";
+        //strSql = "select SUC_ID_SUC from EMDTSUC;";
+        strSql = "select CONCAT(SUC_ID_SUC,' - ',SUC_NOM_SUC) from EMDTSUC;";
+        ResultSet objRes;
+        Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
+        objRes = Conexion.sentencia.executeQuery(strSql);
+
+        return objRes;
+    }
+    
+    public static ResultSet ListarSucursalesCombo(String idFrm) throws SQLException {
+        String strSql;
+        //strSql = "select SUC_ID_SUC from EMDTSUC;";
+        strSql = "select CONCAT(SUC_ID_SUC,' - ',SUC_NOM_SUC) from EMDTSUC WHERE SUC_ID_FRM = '"+idFrm+"';";
         ResultSet objRes;
         Conexion.sentencia = Conexion.conn.prepareStatement(strSql);
         objRes = Conexion.sentencia.executeQuery(strSql);

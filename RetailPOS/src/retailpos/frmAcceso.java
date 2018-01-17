@@ -245,7 +245,7 @@ public class frmAcceso extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargaComboUserName() throws SQLException {
-        ResultSet listaU = Usuario.listarUsuarios();
+        ResultSet listaU = Usuario.listarUsuariosCombo();
         while (listaU.next()) {
             cbUsername.addItem(listaU.getString(1));
         }
