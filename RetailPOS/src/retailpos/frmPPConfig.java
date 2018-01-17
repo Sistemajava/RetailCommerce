@@ -111,6 +111,7 @@ public class frmPPConfig extends javax.swing.JFrame {
        sucur.setLocationRelativeTo(null);
        sucur.setResizable(false);
        sucur.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
