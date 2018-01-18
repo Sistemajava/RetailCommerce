@@ -326,7 +326,7 @@ public class Usuario {
     public static ResultSet listarUsuariosCombo() throws SQLException {
         ResultSet objRes = null;
 
-        String sql = "select usu_id_usua, usu_nombres from EMDTUSU;";
+        String sql = "select usu_id_usua from EMDTUSU;";
         Conexion.sentencia = Conexion.conn.prepareStatement(sql);
         objRes = Conexion.sentencia.executeQuery(sql);
         return objRes;
@@ -529,7 +529,7 @@ public class Usuario {
                     + "from EMDTUSU "
                     + "WHERE 1 = 1 "+idSucur+" "+idPerf+" "+isEstado+";";
             
-            System.out.println("CONSULTA LISTAR USUARIO : "+sql);
+          //  System.out.println("CONSULTA LISTAR USUARIO : "+sql);
             Conexion.sentencia = Conexion.conn.prepareStatement(sql);
             objRes = Conexion.sentencia.executeQuery(sql);
 

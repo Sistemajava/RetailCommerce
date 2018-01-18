@@ -23,8 +23,7 @@ import javax.swing.JOptionPane;
 public class frmAcceso extends javax.swing.JFrame {
     private static int contador = 1;
     String fecha;
-    String horas;
-    private String usrLoginError;
+    String horas;    
 
     public frmAcceso() throws SQLException {
         initComponents();
@@ -222,13 +221,11 @@ public class frmAcceso extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new frmAcceso().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new frmAcceso().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(frmAcceso.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

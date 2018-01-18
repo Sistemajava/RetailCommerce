@@ -192,6 +192,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         jButton1.setText("GESTION COMERCIAL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("STOCK");
 
@@ -931,6 +936,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
        reg.setResizable(false);
        reg.setVisible(true);
     }//GEN-LAST:event_jMenuItem86ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       frmPPGComer submenu = new frmPPGComer();
+       submenu.setLocationRelativeTo(null);
+       submenu.setResizable(false);
+       submenu.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
