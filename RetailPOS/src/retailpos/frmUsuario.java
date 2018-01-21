@@ -14,8 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -867,24 +865,31 @@ public class frmUsuario extends javax.swing.JFrame {
     private void cb2UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb2UsuariosActionPerformed
         String username = (String) this.cb2Usuarios.getSelectedItem();
         System.out.println("PANTALLA 2 cbUsuarios : "+username);       
-        if(!"null".equals(username)){                    
-            try {
-                
-                this.btn2Modificar.setEnabled(true);
-                this.carga2ConsultaPantalla(username);
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(frmUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       // if(!"null".equals(username)){                    
+       //     try {
+       //         
+       //         this.btn2Modificar.setEnabled(true);
+       //         this.carga2ConsultaPantalla(username);
+       //         
+       //     } catch (SQLException ex) {
+       //        System.out.println("ERROR MIERDA");
+       //     }
+       // }
     }//GEN-LAST:event_cb2UsuariosActionPerformed
 
     private void tbListaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListaUsuarioMouseClicked
          
-        if(evt.getClickCount() ==2){
+        try {
+            if(evt.getClickCount() ==2){
             int nroFila = this.tbListaUsuario.rowAtPoint(evt.getPoint());            
-            String idUsuario = (String) this.tbListaUsuario.getValueAt(nroFila, 0);
-            System.out.println("ID SELECCIONADO : "+idUsuario);
+            String idUsuario = (String) this.tbListaUsuario.getValueAt(nroFila, 0);            
+            
+            this.cb2Usuarios.setSelectedItem(idUsuario);
+            this.TablaPaneles.setSelectedIndex(2);
+            this.carga2ConsultaPantalla(idUsuario);            
+            
+            }            
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_tbListaUsuarioMouseClicked
 
