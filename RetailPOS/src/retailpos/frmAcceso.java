@@ -146,6 +146,10 @@ public class frmAcceso extends javax.swing.JFrame {
             if (this.txtPassword.getText().length() > 0) {
                 boolean valida = false; 
                 try {
+                    
+                    //valida = validarDesbloqueo(username);   
+                     
+                    
                      valida = Usuario.validaPassword(username, paswname);
                      if(valida){
                           this.validaUsuarioEstado(username);
@@ -299,7 +303,7 @@ public class frmAcceso extends javax.swing.JFrame {
                 Conexion.CONEXION_USERID_KO = "";
                 
             case 'B': //esta bloqueado, revisar si se puede activar por los 15 min de espera.
-                boolean valida = validarDesbloqueo(username,usr.getUsu_fec_bloq(), usr.getUsu_hor_bloq());
+                boolean valida = validarDesbloqueo(username);
                         
                 if(valida){
                    Usuario.desbloqueaUsuario(username);
@@ -317,10 +321,10 @@ public class frmAcceso extends javax.swing.JFrame {
            }          
     }
 
-    private boolean validarDesbloqueo(String usrID, String fecBloqueo, String horBloqueo) throws SQLException {
+    private boolean validarDesbloqueo(String usrID) throws SQLException {
         boolean valida = false;
         this.cargaFechaHora();
-        valida = Usuario.validaStamBloqueo(usrID,fecBloqueo,horBloqueo,fecha,horas);
+        valida = Usuario.validaStamBloqueo(usrID,fecha,horas);
         
         return valida;
     }

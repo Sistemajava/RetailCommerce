@@ -436,7 +436,7 @@ public class Usuario {
         return resultado;
     }
     
-    public static boolean validaStamBloqueo(String idUsua, String fecBl, String horBl, String fecAct, String horAct) throws SQLException {
+    public static boolean validaStamBloqueo(String idUsua, String fecAct, String horAct) throws SQLException {
         boolean valido = false;
         ResultSet objRes;
         //TIMESTAMPDIFF(MINUTE,TIMESTAMP(USU_FEC_BLOQ,USU_HOR_BLOQ),CURRENT_TIMESTAMP())
